@@ -18,7 +18,13 @@ class ExperienceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->jobTitle(),
+            'company' => fake()->company(),
+            'period' => fake()->year().' – '.fake()->randomElement([fake()->year(), 'Presente']),
+            'icon' => fake()->slug(1),
+            'description' => fake()->paragraph(),
+            'technologies' => fake()->randomElements(['PHP', 'Laravel', 'React', 'TypeScript', 'MySQL', 'Docker', 'Vue', 'Node.js'], 3),
+            'order' => fake()->numberBetween(0, 10),
         ];
     }
 }

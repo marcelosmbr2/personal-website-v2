@@ -18,7 +18,12 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->sentence(3),
+            'description' => fake()->paragraph(),
+            'platform' => fake()->randomElement(['Udemy', 'Coursera', 'YouTube', 'Alura']),
+            'link' => fake()->optional()->url(),
+            'status' => fake()->randomElement(['Completed', 'In Progress', 'Planned']),
+            'order' => fake()->numberBetween(0, 100),
         ];
     }
 }

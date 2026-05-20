@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\Guest\ArticlesController;
 use App\Http\Controllers\Guest\ProjectsController;
 use App\Http\Controllers\Guest\WelcomeController;
@@ -10,7 +11,18 @@ Route::get('/articles', ArticlesController::class)->name('articles.index');
 Route::get('/projects', ProjectsController::class)->name('projects.index');
 
 Route::middleware(['auth'])->group(function () {
-    Route::inertia('dashboard', 'admin/dashboard')->name('dashboard');
+    Route::get('dashboard', Admin\DashboardController::class)->name('dashboard');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('projects', Admin\ProjectsController::class)
+            ->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('articles', Admin\ArticlesController::class)
+            ->only(['index', 'create', 'store', 'update', 'destroy']);
+        Route::resource('courses', Admin\CoursesController::class)
+            ->only(['index', 'create', 'store', 'update', 'destroy']);
+        Route::resource('experiences', Admin\ExperiencesController::class)
+            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    });
 });
 
 require __DIR__.'/settings.php';

@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { IconBook, IconFolderCode, IconLayoutGrid } from '@/components/icons';
+import { IconBriefcase, IconBuilding, IconLayoutGrid, IconNews, IconSchool } from '@/components/icons';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -14,6 +14,10 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import { index as articlesIndex } from '@/routes/admin/articles';
+import { index as coursesIndex } from '@/routes/admin/courses';
+import { index as experiencesIndex } from '@/routes/admin/experiences';
+import { index as projectsIndex } from '@/routes/admin/projects';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -22,20 +26,29 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: IconLayoutGrid,
     },
+    {
+        title: 'Projetos',
+        href: projectsIndex(),
+        icon: IconBriefcase,
+    },
+    {
+        title: 'Artigos',
+        href: articlesIndex(),
+        icon: IconNews,
+    },
+    {
+        title: 'Cursos',
+        href: coursesIndex(),
+        icon: IconSchool,
+    },
+    {
+        title: 'Experiências',
+        href: experiencesIndex(),
+        icon: IconBuilding,
+    },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: IconFolderCode,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: IconBook,
-    },
-];
+const footerNavItems: NavItem[] = [];
 
 export function AppSidebar() {
     return (
