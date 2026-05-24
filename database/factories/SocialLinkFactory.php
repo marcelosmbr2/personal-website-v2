@@ -18,7 +18,9 @@ class SocialLinkFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'link' => fake()->url(),
+            'icon' => 'IconBrandGithub',
         ];
     }
 }

@@ -25,7 +25,7 @@ class StoreCourseRequest extends FormRequest
             'description' => ['required', 'string'],
             'platform' => ['required', 'string', 'in:Udemy,Coursera,YouTube,Alura'],
             'link' => ['nullable', 'url', 'max:255'],
-            'status' => ['required', 'string', 'in:Completed,In Progress,Planned'],
+            'status' => ['required', 'string', 'in:completed,in progress,planned,pending'],
             'order' => ['nullable', 'integer', 'min:0'],
         ];
     }

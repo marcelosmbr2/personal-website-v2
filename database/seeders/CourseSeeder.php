@@ -11,28 +11,44 @@ class CourseSeeder extends Seeder
     {
         $courses = [
             [
+                'name' => 'Pós Graduação em Engenharia e Arquitetura de Software',
+                'description' => 'A pós-graduação em Engenharia e Arquitetura de Software é um curso EAD voltado à formação de profissionais capazes de projetar, desenvolver e estruturar sistemas modernos, escaláveis e alinhados às boas práticas da engenharia de software.',
+                'platform' => 'UCPel',
+                'link' => 'https://cursos.ucpel.edu.br/engenharia-e-arquitetura-de-software/',
+                'status' => 'pending',
+                'order' => 1,
+            ],
+            [
+                'name' => 'Engenharia de Agentes de IA',
+                'description' => 'Essa formação prepara profissionais para desenvolver agentes de IA utilizando Python, LangChain, APIs de LLMs, RAG, machine learning, MLOps e cloud computing.',
+                'platform' => 'Alura',
+                'link' => 'https://cursos.ucpel.edu.br/engenharia-e-arquitetura-de-software/',
+                'status' => 'pending',
+                'order' => 2,
+            ],
+            [
                 'name' => 'Formação em Engenharia de Software',
                 'description' => 'Essa formação oferece uma visão completa da área, abordando disciplinas como arquitetura e design de sistemas, testes de software, gestão de projetos, infraestrutura e deploy.',
                 'platform' => 'Alura',
                 'link' => 'https://cursos.alura.com.br/degree/certificate/5b05f0ae-36c9-4898-af7c-4e4fed60a6f3?lang=pt_BR',
-                'status' => 'Completed',
-                'order' => 1,
+                'status' => 'completed',
+                'order' => 3,
             ],
             [
                 'name' => 'Formação em DevOps',
                 'description' => 'Essa formação ensina práticas de integração e entrega contínua, virtualização e provisionamento de infraestrutura, conteinerização e monitoramento de sistemas.',
                 'platform' => 'Alura',
                 'link' => 'https://www.alura.com.br/formacao-engenharia-software',
-                'status' => 'Completed',
-                'order' => 2,
+                'status' => 'completed',
+                'order' => 4,
             ],
             [
                 'name' => 'Carreira Desenvolvedor PHP',
                 'description' => 'Essa carreira cobre desde os fundamentos da linguagem PHP até o desenvolvimento de aplicações web completas utilizando frameworks como Laravel e Symfony.',
                 'platform' => 'Alura',
                 'link' => 'https://www.alura.com.br/carreiras/desenvolvimento-backend-php',
-                'status' => 'Pending',
-                'order' => 3,
+                'status' => 'completed',
+                'order' => 5,
             ],
         ];
 

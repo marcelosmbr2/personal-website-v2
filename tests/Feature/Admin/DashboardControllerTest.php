@@ -18,6 +18,21 @@ test('authenticated users can visit the dashboard', function () {
             ->has('messagesBugCount')
             ->has('messagesContatoCount')
             ->has('messagesEmpregoCount')
+            ->has('recentMessages')
+        );
+});
+
+test('dashboard passes at most 5 recent messages without body', function () {
+    Message::factory()->count(8)->create();
+
+    $this->actingAs(User::factory()->create())
+        ->get(route('dashboard'))
+        ->assertInertia(fn ($page) => $page
+            ->has('recentMessages', 5)
+            ->has('recentMessages.0', fn ($msg) => $msg
+                ->hasAll(['id', 'type', 'subject', 'sender_email', 'created_at'])
+                ->missing('body')
+            )
         );
 });
 

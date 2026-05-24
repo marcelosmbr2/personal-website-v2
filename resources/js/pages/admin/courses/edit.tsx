@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import CoursesController from '@/actions/App/Http/Controllers/Admin/CoursesController';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
@@ -6,18 +6,40 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { create as coursesCreate, index as coursesIndex } from '@/routes/admin/courses';
+import { index as coursesIndex } from '@/routes/admin/courses';
 
-export default function CreateCourse() {
+interface Course {
+    id: number;
+    name: string;
+    description: string;
+    platform: string;
+    link: string | null;
+    status: string;
+    order: number;
+}
+
+interface Props {
+    course: Course;
+}
+
+export default function EditCourse({ course }: Props) {
+    setLayoutProps({
+        breadcrumbs: [
+            { title: 'Cursos', href: coursesIndex() },
+            { title: course.name },
+            { title: 'Editar' },
+        ],
+    });
+
     return (
         <>
-            <Head title="Novo Curso" />
+            <Head title={`Editar — ${course.name}`} />
 
             <div className="flex h-full flex-1 flex-col gap-6 p-4">
-                <h1 className="text-xl font-semibold">Novo Curso</h1>
+                <h1 className="text-xl font-semibold">Editar Curso</h1>
 
                 <Form
-                    {...CoursesController.store.form()}
+                    {...CoursesController.update.form({ course: course.id })}
                     options={{ preserveScroll: true }}
                     className="mx-auto w-full max-w-5xl space-y-4"
                 >
@@ -29,6 +51,7 @@ export default function CreateCourse() {
                                     id="name"
                                     name="name"
                                     required
+                                    defaultValue={course.name}
                                     placeholder="Ex: React do Zero ao Avançado"
                                 />
                                 <InputError message={errors.name} />
@@ -40,6 +63,7 @@ export default function CreateCourse() {
                                     id="description"
                                     name="description"
                                     required
+                                    defaultValue={course.description}
                                     placeholder="Descreva o curso..."
                                 />
                                 <InputError message={errors.description} />
@@ -47,9 +71,9 @@ export default function CreateCourse() {
 
                             <div className="grid gap-1.5">
                                 <Label htmlFor="platform">Plataforma</Label>
-                                <Select name="platform" defaultValue="">
+                                <Select name="platform" defaultValue={course.platform}>
                                     <SelectTrigger id="platform" className="w-full">
-                                        <SelectValue placeholder="Selecione a plataforma" />
+                                        <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="Udemy">Udemy</SelectItem>
@@ -63,7 +87,7 @@ export default function CreateCourse() {
 
                             <div className="grid gap-1.5">
                                 <Label htmlFor="status">Status</Label>
-                                <Select name="status" defaultValue="planned">
+                                <Select name="status" defaultValue={course.status}>
                                     <SelectTrigger id="status" className="w-full">
                                         <SelectValue />
                                     </SelectTrigger>
@@ -83,6 +107,7 @@ export default function CreateCourse() {
                                     id="link"
                                     name="link"
                                     type="url"
+                                    defaultValue={course.link ?? ''}
                                     placeholder="https://..."
                                 />
                                 <InputError message={errors.link} />
@@ -95,7 +120,7 @@ export default function CreateCourse() {
                                     name="order"
                                     type="number"
                                     min={0}
-                                    defaultValue={0}
+                                    defaultValue={course.order}
                                 />
                                 <InputError message={errors.order} />
                             </div>
@@ -110,16 +135,3 @@ export default function CreateCourse() {
         </>
     );
 }
-
-CreateCourse.layout = {
-    breadcrumbs: [
-        {
-            title: 'Cursos',
-            href: coursesIndex(),
-        },
-        {
-            title: 'Novo Curso',
-            href: coursesCreate(),
-        },
-    ],
-};

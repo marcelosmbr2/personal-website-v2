@@ -22,7 +22,7 @@ class CourseFactory extends Factory
             'description' => fake()->paragraph(),
             'platform' => fake()->randomElement(['Udemy', 'Coursera', 'YouTube', 'Alura']),
             'link' => fake()->optional()->url(),
-            'status' => fake()->randomElement(['Completed', 'In Progress', 'Planned']),
+            'status' => fake()->randomElement(['completed', 'in progress', 'planned', 'pending']),
             'order' => fake()->numberBetween(0, 100),
         ];
     }

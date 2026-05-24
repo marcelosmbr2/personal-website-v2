@@ -15,6 +15,7 @@ type Owner = {
     role: string | null;
     bio: string | null;
     avatar: string | null;
+    cv_path: string | null;
 };
 
 type SocialLink = {
@@ -313,14 +314,16 @@ export default function Welcome({
                         <h2 className="font-medium text-gray-800 dark:text-neutral-200">
                             Experiência
                         </h2>
-                        <a
-                            href="/docs/cv-ptbr.pdf"
-                            download
-                            className="inline-flex items-center gap-x-1 text-sm text-gray-600 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
-                        >
-                            Currículo
-                            <IconDownload className="shrink-0 size-4" />
-                        </a>
+                        {owner.cv_path && (
+                            <a
+                                href={owner.cv_path}
+                                download
+                                className="inline-flex items-center gap-x-1 text-sm text-gray-600 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200 transition-colors"
+                            >
+                                Currículo
+                                <IconDownload className="shrink-0 size-4" />
+                            </a>
+                        )}
                     </div>
                     <div>
                         {experiences.map((experience) => (

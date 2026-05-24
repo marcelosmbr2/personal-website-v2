@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 test('profile page is displayed', function () {
     $user = User::factory()->create();
@@ -65,6 +67,51 @@ test('user can delete their account', function () {
 
     $this->assertGuest();
     expect($user->fresh())->toBeNull();
+});
+
+test('profile role and bio can be updated', function () {
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->patch(route('profile.update'), [
+            'name' => $user->name,
+            'email' => $user->email,
+            'role' => 'Full Stack Developer',
+            'bio' => 'A brief bio about me.',
+        ]);
+
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('profile.edit'));
+
+    $user->refresh();
+
+    expect($user->role)->toBe('Full Stack Developer');
+    expect($user->bio)->toBe('A brief bio about me.');
+});
+
+test('avatar can be uploaded', function () {
+    Storage::fake('public');
+
+    $user = User::factory()->create();
+
+    $response = $this
+        ->actingAs($user)
+        ->patch(route('profile.update'), [
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => UploadedFile::fake()->image('avatar.jpg'),
+        ]);
+
+    $response
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(route('profile.edit'));
+
+    $user->refresh();
+
+    expect($user->avatar)->not->toBeNull();
+    expect($user->avatar)->toStartWith('/storage/');
 });
 
 test('correct password must be provided to delete account', function () {

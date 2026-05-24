@@ -2,6 +2,8 @@
 
 use App\Models\Experience;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 test('guests are redirected to the login page', function () {
     $this->get(route('admin.experiences.index'))
@@ -25,13 +27,14 @@ test('authenticated users can view the create experience page', function () {
         ->assertInertia(fn ($page) => $page->component('admin/experiences/create'));
 });
 
-test('can store an experience', function () {
+test('can store an experience with a devicon', function () {
     $this->actingAs(User::factory()->create())
         ->post(route('admin.experiences.store'), [
             'title' => 'Engenheiro de Software',
             'company' => 'Acme Corp',
             'period' => '2022 – Presente',
-            'icon' => 'acme-corp',
+            'icon_type' => 'devicon',
+            'icon_name' => 'laravel',
             'description' => 'Desenvolvimento de aplicações web.',
             'technologies' => 'PHP, Laravel, React',
             'order' => 1,
@@ -41,8 +44,29 @@ test('can store an experience', function () {
     $this->assertDatabaseHas('experiences', [
         'title' => 'Engenheiro de Software',
         'company' => 'Acme Corp',
-        'period' => '2022 – Presente',
+        'icon' => 'devicon:laravel',
+        'icon_type' => 'devicon',
     ]);
+});
+
+test('can store an experience with a file upload', function () {
+    Storage::fake('public');
+
+    $this->actingAs(User::factory()->create())
+        ->post(route('admin.experiences.store'), [
+            'title' => 'Engenheiro de Software',
+            'company' => 'Acme Corp',
+            'period' => '2022 – Presente',
+            'icon_type' => 'upload',
+            'icon_file' => UploadedFile::fake()->image('icon.png'),
+            'description' => 'Desenvolvimento de aplicações web.',
+            'technologies' => 'PHP, Laravel, React',
+            'order' => 1,
+        ])
+        ->assertRedirect(route('admin.experiences.index'));
+
+    $experience = Experience::where('title', 'Engenheiro de Software')->first();
+    expect($experience->getRawOriginal('icon'))->toStartWith('public/experiences/');
 });
 
 test('authenticated users can view the edit experience page', function () {
@@ -60,10 +84,10 @@ test('authenticated users can view the edit experience page', function () {
 test('store validates required fields', function () {
     $this->actingAs(User::factory()->create())
         ->post(route('admin.experiences.store'), [])
-        ->assertSessionHasErrors(['title', 'company', 'period', 'icon', 'description']);
+        ->assertSessionHasErrors(['title', 'company', 'period', 'icon_type', 'description']);
 });
 
-test('can update an experience', function () {
+test('can update an experience icon to devicon', function () {
     $experience = Experience::factory()->create(['title' => 'Cargo Antigo']);
 
     $this->actingAs(User::factory()->create())
@@ -71,7 +95,8 @@ test('can update an experience', function () {
             'title' => 'Cargo Atualizado',
             'company' => 'Nova Empresa',
             'period' => '2023 – Presente',
-            'icon' => 'nova-empresa',
+            'icon_type' => 'devicon',
+            'icon_name' => 'react',
             'description' => 'Nova descrição.',
             'technologies' => 'TypeScript, Vue',
             'order' => 2,
@@ -81,7 +106,8 @@ test('can update an experience', function () {
     $this->assertDatabaseHas('experiences', [
         'id' => $experience->id,
         'title' => 'Cargo Atualizado',
-        'company' => 'Nova Empresa',
+        'icon' => 'devicon:react',
+        'icon_type' => 'devicon',
     ]);
 });
 

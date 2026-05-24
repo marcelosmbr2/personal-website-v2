@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('company');
             $table->string('period');
             $table->string('icon');
+            $table->string('icon_type')->default('devicon');
             $table->text('description');
             $table->json('technologies')->nullable();
             $table->unsignedSmallInteger('order')->default(0);

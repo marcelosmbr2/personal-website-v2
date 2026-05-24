@@ -24,7 +24,7 @@ export default function CreateArticle() {
                 <Form
                     {...ArticlesController.store.form()}
                     options={{ preserveScroll: true }}
-                    className="mx-auto w-full max-w-3xl space-y-4"
+                    className="mx-auto w-full max-w-5xl space-y-4"
                 >
                     {({ processing, errors }) => (
                         <>
@@ -53,7 +53,7 @@ export default function CreateArticle() {
                             <div className="grid gap-1.5">
                                 <Label htmlFor="category">Categoria</Label>
                                 <Select name="category" defaultValue="">
-                                    <SelectTrigger id="category" className="w-full">
+                                    <SelectTrigger id="category" className="w-64">
                                         <SelectValue placeholder="Sem categoria" />
                                     </SelectTrigger>
                                     <SelectContent>

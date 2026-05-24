@@ -25,6 +25,18 @@ test('authenticated users can view the create course page', function () {
         ->assertInertia(fn ($page) => $page->component('admin/courses/create'));
 });
 
+test('authenticated users can view the edit course page', function () {
+    $course = Course::factory()->create();
+
+    $this->actingAs(User::factory()->create())
+        ->get(route('admin.courses.edit', $course))
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page
+            ->component('admin/courses/edit')
+            ->has('course')
+        );
+});
+
 test('can store a course', function () {
     $this->actingAs(User::factory()->create())
         ->post(route('admin.courses.store'), [
@@ -32,7 +44,7 @@ test('can store a course', function () {
             'description' => 'Aprenda React do zero',
             'platform' => 'Udemy',
             'link' => 'https://udemy.com/react',
-            'status' => 'Planned',
+            'status' => 'planned',
             'order' => 1,
         ])
         ->assertRedirect(route('admin.courses.index'));
@@ -40,7 +52,7 @@ test('can store a course', function () {
     $this->assertDatabaseHas('courses', [
         'name' => 'React do Zero ao Avançado',
         'platform' => 'Udemy',
-        'status' => 'Planned',
+        'status' => 'planned',
     ]);
 });
 
@@ -58,7 +70,7 @@ test('can update a course', function () {
             'name' => 'Curso Atualizado',
             'description' => 'Nova descrição',
             'platform' => 'Coursera',
-            'status' => 'Completed',
+            'status' => 'completed',
             'order' => 2,
         ])
         ->assertRedirect(route('admin.courses.index'));
@@ -67,7 +79,7 @@ test('can update a course', function () {
         'id' => $course->id,
         'name' => 'Curso Atualizado',
         'platform' => 'Coursera',
-        'status' => 'Completed',
+        'status' => 'completed',
     ]);
 });
 

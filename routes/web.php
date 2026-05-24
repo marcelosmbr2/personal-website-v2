@@ -19,9 +19,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('articles', Admin\ArticlesController::class)
             ->only(['index', 'create', 'store', 'update', 'destroy']);
         Route::resource('courses', Admin\CoursesController::class)
-            ->only(['index', 'create', 'store', 'update', 'destroy']);
+            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
         Route::resource('experiences', Admin\ExperiencesController::class)
             ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('messages', Admin\MessagesController::class)
+            ->only(['show']);
     });
 });
 

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Form, Head, Link } from '@inertiajs/react';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import CoursesController from '@/actions/App/Http/Controllers/Admin/CoursesController';
-import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,12 +13,9 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Textarea } from '@/components/ui/textarea';
-import { create as coursesCreate, index as coursesIndex } from '@/routes/admin/courses';
+import { create as coursesCreate, edit as coursesEdit, index as coursesIndex } from '@/routes/admin/courses';
 
 interface Course {
     id: number;
@@ -36,13 +32,13 @@ interface Props {
 }
 
 const STATUS_BADGE: Record<string, string> = {
-    Completed: 'bg-green-100 text-green-800',
-    'In Progress': 'bg-blue-100 text-blue-800',
-    Planned: 'bg-gray-100 text-gray-700',
+    completed: 'bg-green-100 text-green-800',
+    'in progress': 'bg-blue-100 text-blue-800',
+    planned: 'bg-gray-100 text-gray-700',
+    pending: 'bg-yellow-100 text-yellow-800',
 };
 
 export default function Courses({ courses }: Props) {
-    const [editingCourse, setEditingCourse] = useState<Course | null>(null);
     const [deleteCourse, setDeleteCourse] = useState<Course | null>(null);
 
     const [search, setSearch] = useState('');
@@ -84,9 +80,10 @@ export default function Courses({ courses }: Props) {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="todos">Todos os Status</SelectItem>
-                            <SelectItem value="Completed">Completed</SelectItem>
-                            <SelectItem value="In Progress">In Progress</SelectItem>
-                            <SelectItem value="Planned">Planned</SelectItem>
+                            <SelectItem value="completed">completed</SelectItem>
+                            <SelectItem value="in progress">in progress</SelectItem>
+                            <SelectItem value="planned">planned</SelectItem>
+                            <SelectItem value="pending">pending</SelectItem>
                         </SelectContent>
                     </Select>
 
@@ -131,12 +128,10 @@ export default function Courses({ courses }: Props) {
                                 <TableCell>{course.order}</TableCell>
                                 <TableCell>
                                     <div className="flex gap-1">
-                                        <Button
-                                            variant="ghost"
-                                            size="icon"
-                                            onClick={() => setEditingCourse(course)}
-                                        >
-                                            <IconPencil className="size-4" />
+                                        <Button variant="ghost" size="icon" asChild>
+                                            <Link href={coursesEdit({ course: course.id })}>
+                                                <IconPencil className="size-4" />
+                                            </Link>
                                         </Button>
                                         <Button
                                             variant="ghost"
@@ -152,122 +147,6 @@ export default function Courses({ courses }: Props) {
                     </TableBody>
                 </Table>
             </div>
-
-            {/* Edit Sheet */}
-            <Sheet open={!!editingCourse} onOpenChange={() => setEditingCourse(null)}>
-                <SheetContent className="flex flex-col overflow-hidden">
-                    {editingCourse && (
-                        <Form
-                            key={editingCourse.id}
-                            className="flex flex-1 flex-col overflow-hidden"
-                            {...CoursesController.update.form({ course: editingCourse.id })}
-                            options={{ preserveScroll: true }}
-                            onSuccess={() => setEditingCourse(null)}
-                        >
-                            {({ processing, errors }) => (
-                                <>
-                                    <SheetHeader>
-                                        <SheetTitle>Editar Curso</SheetTitle>
-                                    </SheetHeader>
-
-                                    <div className="flex-1 space-y-4 overflow-y-auto px-4 py-2">
-                                        <div className="grid gap-1.5">
-                                            <Label htmlFor="name">Nome</Label>
-                                            <Input
-                                                id="name"
-                                                name="name"
-                                                required
-                                                defaultValue={editingCourse.name}
-                                                placeholder="Ex: React do Zero ao Avançado"
-                                            />
-                                            <InputError message={errors.name} />
-                                        </div>
-
-                                        <div className="grid gap-1.5">
-                                            <Label htmlFor="description">Descrição</Label>
-                                            <Textarea
-                                                id="description"
-                                                name="description"
-                                                required
-                                                defaultValue={editingCourse.description}
-                                                placeholder="Descreva o curso..."
-                                            />
-                                            <InputError message={errors.description} />
-                                        </div>
-
-                                        <div className="grid gap-1.5">
-                                            <Label htmlFor="platform">Plataforma</Label>
-                                            <Select
-                                                name="platform"
-                                                defaultValue={editingCourse.platform}
-                                            >
-                                                <SelectTrigger id="platform" className="w-full">
-                                                    <SelectValue />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="Udemy">Udemy</SelectItem>
-                                                    <SelectItem value="Coursera">Coursera</SelectItem>
-                                                    <SelectItem value="YouTube">YouTube</SelectItem>
-                                                    <SelectItem value="Alura">Alura</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                            <InputError message={errors.platform} />
-                                        </div>
-
-                                        <div className="grid gap-1.5">
-                                            <Label htmlFor="status">Status</Label>
-                                            <Select
-                                                name="status"
-                                                defaultValue={editingCourse.status}
-                                            >
-                                                <SelectTrigger id="status" className="w-full">
-                                                    <SelectValue />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="Completed">Completed</SelectItem>
-                                                    <SelectItem value="In Progress">In Progress</SelectItem>
-                                                    <SelectItem value="Planned">Planned</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                            <InputError message={errors.status} />
-                                        </div>
-
-                                        <div className="grid gap-1.5">
-                                            <Label htmlFor="link">Link</Label>
-                                            <Input
-                                                id="link"
-                                                name="link"
-                                                type="url"
-                                                defaultValue={editingCourse.link ?? ''}
-                                                placeholder="https://..."
-                                            />
-                                            <InputError message={errors.link} />
-                                        </div>
-
-                                        <div className="grid gap-1.5">
-                                            <Label htmlFor="order">Ordem</Label>
-                                            <Input
-                                                id="order"
-                                                name="order"
-                                                type="number"
-                                                min={0}
-                                                defaultValue={editingCourse.order}
-                                            />
-                                            <InputError message={errors.order} />
-                                        </div>
-                                    </div>
-
-                                    <SheetFooter>
-                                        <Button type="submit" disabled={processing} className="w-full">
-                                            Salvar
-                                        </Button>
-                                    </SheetFooter>
-                                </>
-                            )}
-                        </Form>
-                    )}
-                </SheetContent>
-            </Sheet>
 
             {/* Delete Dialog */}
             <Dialog open={!!deleteCourse} onOpenChange={() => setDeleteCourse(null)}>

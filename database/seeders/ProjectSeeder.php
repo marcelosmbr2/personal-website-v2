@@ -11,14 +11,24 @@ class ProjectSeeder extends Seeder
     {
         $projects = [
             [
-                'name' => 'Portfolio',
+                'name' => 'Portfolio V2',
+                'image' => '/images/projects/laravel.webp',
+                'description' => 'Portfolio pessoal construído com Laravel 13, Inertia e React.',
+                'technologies' => ['Laravel', 'PHP', 'Inertia', 'React', 'Typescript'],
+                'link' => 'https://github.com/marcelosmbr2/personal-website-v2',
+                'status' => 'Completed',
+                'is_favorite' => true,
+                'order' => 1,
+            ],
+            [
+                'name' => 'Portfolio V1',
                 'image' => '/images/projects/nextjs.webp',
                 'description' => 'Portfolio pessoal construído com Next.js 15 e DatoCMS.',
                 'technologies' => ['Next.js', 'DatoCMS'],
                 'link' => 'https://github.com/Marcelosmbr2/personal-website',
                 'status' => 'Completed',
                 'is_favorite' => false,
-                'order' => 1,
+                'order' => 2,
             ],
             [
                 'name' => 'Symfony Framework',
@@ -27,8 +37,8 @@ class ProjectSeeder extends Seeder
                 'technologies' => ['PHP', 'Symfony'],
                 'link' => 'https://github.com/marcelosmbr2/symfony-framework',
                 'status' => 'in-progress',
-                'is_favorite' => true,
-                'order' => 2,
+                'is_favorite' => false,
+                'order' => 3,
             ],
             [
                 'name' => 'Laravel MCP',
@@ -38,7 +48,7 @@ class ProjectSeeder extends Seeder
                 'link' => 'https://github.com/marcelosmbr2/laravel-mcp',
                 'status' => 'Completed',
                 'is_favorite' => true,
-                'order' => 3,
+                'order' => 4,
             ],
             [
                 'name' => 'Infraestrutura como Código',
@@ -48,7 +58,7 @@ class ProjectSeeder extends Seeder
                 'link' => 'https://github.com/marcelosmbr2/iac-terraform-ansible.git',
                 'status' => 'Completed',
                 'is_favorite' => true,
-                'order' => 4,
+                'order' => 5,
             ],
             [
                 'name' => 'Laravel Queues',
@@ -58,7 +68,7 @@ class ProjectSeeder extends Seeder
                 'link' => 'https://github.com/Marcelosmbr2/laravel-queue-horizon',
                 'status' => 'Completed',
                 'is_favorite' => false,
-                'order' => 5,
+                'order' => 6,
             ],
             [
                 'name' => 'Laravel Cache Telescope',
@@ -68,7 +78,7 @@ class ProjectSeeder extends Seeder
                 'link' => 'https://github.com/Marcelosmbr2/laravel-cache-telescope',
                 'status' => 'Completed',
                 'is_favorite' => false,
-                'order' => 6,
+                'order' => 7,
             ],
             [
                 'name' => 'Laravel Evolution API',
@@ -78,7 +88,7 @@ class ProjectSeeder extends Seeder
                 'link' => 'https://github.com/marcelosmbr2/laravel-evolution-api',
                 'status' => 'Completed',
                 'is_favorite' => false,
-                'order' => 7,
+                'order' => 8,
             ],
             [
                 'name' => 'Spring Framework',
@@ -88,7 +98,7 @@ class ProjectSeeder extends Seeder
                 'link' => 'https://github.com/Marcelosmbr2/spring-basic',
                 'status' => 'Completed',
                 'is_favorite' => false,
-                'order' => 8,
+                'order' => 9,
             ],
         ];
 

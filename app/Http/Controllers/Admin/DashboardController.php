@@ -20,6 +20,7 @@ class DashboardController extends Controller
             'messagesBugCount' => $messageCounts->get('bug', 0),
             'messagesContatoCount' => $messageCounts->get('contato', 0),
             'messagesEmpregoCount' => $messageCounts->get('emprego', 0),
+            'recentMessages' => Message::latest()->limit(5)->get(['id', 'type', 'subject', 'sender_email', 'created_at']),
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
+use App\Http\Controllers\Settings\SocialLinksController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -9,6 +10,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('settings/social-links', [SocialLinksController::class, 'update'])->name('social-links.update');
 });
 
 Route::middleware(['auth'])->group(function () {

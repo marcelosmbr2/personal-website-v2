@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('external_link')->nullable();
             $table->string('image_url')->nullable();
             $table->boolean('is_favorite')->default(false);
+            $table->string('category')->nullable();
+            $table->longText('content')->nullable();
+            $table->boolean('is_from_medium')->default(false);
             $table->timestamps();
         });
     }

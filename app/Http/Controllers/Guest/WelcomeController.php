@@ -17,11 +17,11 @@ class WelcomeController extends Controller
 {
     public function __invoke(): Response
     {
-        $owner = User::select(['name', 'role', 'bio', 'avatar'])->first();
+        $owner = User::select(['name', 'role', 'bio', 'avatar', 'cv_path'])->first();
 
         return Inertia::render('guest/welcome', [
             'owner' => $owner,
-            'socialLinks' => SocialLink::all(),
+            'socialLinks' => SocialLink::where('link', '!=', '')->get(),
             'skills' => Skill::orderBy('order')->get()->groupBy('category'),
             'experiences' => Experience::orderBy('order')->get(),
             'projects' => Project::where('is_favorite', true)->limit(3)->get(),

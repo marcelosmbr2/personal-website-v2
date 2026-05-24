@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\StoreExperienceRequest;
 use App\Http\Requests\Admin\UpdateExperienceRequest;
 use App\Models\Experience;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -35,6 +36,8 @@ class ExperiencesController extends Controller
     {
         $data = $request->validated();
         $data['technologies'] = array_values(array_filter(array_map('trim', explode(',', $data['technologies'] ?? ''))));
+        $data['icon'] = $this->resolveIcon($request);
+        unset($data['icon_file'], $data['icon_name']);
 
         Experience::create($data);
 
@@ -47,12 +50,37 @@ class ExperiencesController extends Controller
     {
         $data = $request->validated();
         $data['technologies'] = array_values(array_filter(array_map('trim', explode(',', $data['technologies'] ?? ''))));
+        $data['icon'] = $this->resolveIcon($request, $experience->getRawOriginal('icon'));
+        unset($data['icon_file'], $data['icon_name']);
 
         $experience->update($data);
 
         Inertia::flash('toast', ['type' => 'success', 'message' => 'Experiência atualizada.']);
 
         return to_route('admin.experiences.index');
+    }
+
+    private function resolveIcon(StoreExperienceRequest|UpdateExperienceRequest $request, ?string $previousIcon = null): string
+    {
+        if ($request->input('icon_type') === 'devicon') {
+            if ($previousIcon !== null && str_starts_with($previousIcon, 'public/')) {
+                Storage::disk('public')->delete(substr($previousIcon, 7));
+            }
+
+            return 'devicon:'.$request->input('icon_name');
+        }
+
+        if ($request->hasFile('icon_file')) {
+            if ($previousIcon !== null && str_starts_with($previousIcon, 'public/')) {
+                Storage::disk('public')->delete(substr($previousIcon, 7));
+            }
+
+            $path = $request->file('icon_file')->store('experiences', 'public');
+
+            return 'public/'.$path;
+        }
+
+        return $previousIcon ?? '';
     }
 
     public function destroy(Experience $experience): RedirectResponse

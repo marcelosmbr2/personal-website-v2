@@ -1,9 +1,12 @@
+import * as React from 'react';
 import { Form, Head, setLayoutProps } from '@inertiajs/react';
 import ExperiencesController from '@/actions/App/Http/Controllers/Admin/ExperiencesController';
+import { DevIconPicker } from '@/components/dev-icon-picker';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import { index as experiencesIndex } from '@/routes/admin/experiences';
 
@@ -13,6 +16,7 @@ interface Experience {
     company: string;
     period: string;
     icon: string;
+    icon_type: string;
     description: string;
     technologies: string[] | null;
     order: number;
@@ -22,7 +26,15 @@ interface Props {
     experience: Experience;
 }
 
+type IconMode = 'devicon' | 'upload';
+
+function extractDevIconName(icon: string): string {
+    return icon.startsWith('devicon:') ? icon.slice(8) : '';
+}
+
 export default function EditExperience({ experience }: Props) {
+    const [iconMode, setIconMode] = React.useState<IconMode>(experience.icon_type as IconMode);
+
     setLayoutProps({
         breadcrumbs: [
             { title: 'Experiências', href: experiencesIndex() },
@@ -41,7 +53,8 @@ export default function EditExperience({ experience }: Props) {
                 <Form
                     {...ExperiencesController.update.form({ experience: experience.id })}
                     options={{ preserveScroll: true }}
-                    className="mx-auto w-full max-w-3xl space-y-4"
+                    encType="multipart/form-data"
+                    className="mx-auto w-full max-w-5xl space-y-4"
                 >
                     {({ processing, errors }) => (
                         <>
@@ -82,15 +95,49 @@ export default function EditExperience({ experience }: Props) {
                             </div>
 
                             <div className="grid gap-1.5">
-                                <Label htmlFor="icon">Ícone</Label>
-                                <Input
-                                    id="icon"
-                                    name="icon"
-                                    required
-                                    defaultValue={experience.icon}
-                                    placeholder="Ex: acme-corp"
-                                />
-                                <InputError message={errors.icon} />
+                                <Label>Ícone</Label>
+                                <RadioGroup
+                                    value={iconMode}
+                                    onValueChange={(v) => setIconMode(v as IconMode)}
+                                    className="flex gap-6"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <RadioGroupItem value="devicon" id="icon-devicon" />
+                                        <Label htmlFor="icon-devicon">DevIcons</Label>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <RadioGroupItem value="upload" id="icon-upload" />
+                                        <Label htmlFor="icon-upload">Upload</Label>
+                                    </div>
+                                </RadioGroup>
+                                <input type="hidden" name="icon_type" value={iconMode} />
+                                {iconMode === 'devicon' && (
+                                    <>
+                                        <DevIconPicker
+                                            name="icon_name"
+                                            defaultValue={extractDevIconName(experience.icon)}
+                                        />
+                                        <InputError message={errors.icon_name} />
+                                    </>
+                                )}
+                                {iconMode === 'upload' && (
+                                    <>
+                                        {experience.icon_type === 'upload' && experience.icon && (
+                                            <div className="flex items-center gap-2">
+                                                <img
+                                                    src={experience.icon}
+                                                    alt="Ícone atual"
+                                                    className="size-10 rounded object-contain"
+                                                />
+                                                <span className="text-muted-foreground text-sm">
+                                                    Ícone atual (deixe em branco para manter)
+                                                </span>
+                                            </div>
+                                        )}
+                                        <Input type="file" name="icon_file" accept="image/*" />
+                                        <InputError message={errors.icon_file} />
+                                    </>
+                                )}
                             </div>
 
                             <div className="grid gap-1.5">
@@ -138,4 +185,3 @@ export default function EditExperience({ experience }: Props) {
         </>
     );
 }
-

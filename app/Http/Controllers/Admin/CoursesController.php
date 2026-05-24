@@ -24,6 +24,13 @@ class CoursesController extends Controller
         return Inertia::render('admin/courses/create');
     }
 
+    public function edit(Course $course): Response
+    {
+        return Inertia::render('admin/courses/edit', [
+            'course' => $course,
+        ]);
+    }
+
     public function store(StoreCourseRequest $request): RedirectResponse
     {
         Course::create($request->validated());

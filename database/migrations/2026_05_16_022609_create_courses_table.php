@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('platform');
             $table->string('link')->nullable();
-            $table->string('status')->default('Completed');
+            $table->string('status')->default('completed');
             $table->unsignedSmallInteger('order')->default(0);
             $table->timestamps();
         });
