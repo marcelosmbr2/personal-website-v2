@@ -22,8 +22,18 @@ Route::middleware(['auth'])->group(function () {
             ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
         Route::resource('experiences', Admin\ExperiencesController::class)
             ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::resource('resumes', Admin\ResumesController::class)
+            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+        Route::get('resumes/import', [Admin\ResumesController::class, 'showImport'])->name('resumes.import');
+        Route::post('resumes/import', [Admin\ResumesController::class, 'storeImport'])->name('resumes.storeImport');
         Route::resource('messages', Admin\MessagesController::class)
             ->only(['show']);
+
+        Route::get('backup', [Admin\BackupsController::class, 'index'])->name('backup.index');
+        Route::post('backup/database', [Admin\BackupsController::class, 'runDatabase'])->name('backup.runDatabase');
+        Route::post('backup/storage', [Admin\BackupsController::class, 'runStorage'])->name('backup.runStorage');
+        Route::get('backup/{file}/download', [Admin\BackupsController::class, 'download'])->name('backup.download')->where('file', '[\w\-\.]+');
+        Route::delete('backup/{file}', [Admin\BackupsController::class, 'destroy'])->name('backup.destroy')->where('file', '[\w\-\.]+');
     });
 });
 

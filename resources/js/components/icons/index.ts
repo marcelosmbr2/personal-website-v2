@@ -1,7 +1,4 @@
-import type { FC } from 'react';
-import type { TablerIconsProps } from '@tabler/icons-react';
-
-export type TablerIcon = FC<TablerIconsProps>;
+export type { TablerIcon } from '@tabler/icons-react';
 
 export {
     IconAlertCircle,
@@ -21,11 +18,13 @@ export {
     IconChevronUp,
     IconCircle,
     IconCopy,
+    IconDatabase,
     IconDeviceDesktop,
     IconDots,
     IconDownload,
     IconEye,
     IconEyeOff,
+    IconFileText,
     IconFolder,
     IconFolderCode,
     IconLayoutGrid,
