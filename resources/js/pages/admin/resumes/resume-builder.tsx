@@ -14,12 +14,146 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { store as resumesStore } from '@/routes/admin/resumes';
 
 const DEFAULT_CONTENT: ResumeContent = {
-    header: { name: '', title: '', location: '', email: '', phone: '', linkedin: '', website: '', github: '' },
-    summary: '',
-    skills: [],
-    experiences: [],
-    education: [],
-    courses: [],
+    header: {
+        name: 'Marcelo Moreira',
+        title: 'Desenvolvedor PHP',
+        location: 'Caxias do Sul, RS',
+        email: 'marcelosmbr.dev@outlook.com',
+        phone: '(53) 991082653',
+        linkedin: 'https://www.linkedin.com/in/marcelosmbr/',
+        website: 'https://marcelosmbr.vercel.app/',
+        github: 'https://github.com/Marcelosmbr2',
+    },
+    summary:
+        'Desenvolvedor full-stack especializado em PHP/Laravel e React/TypeScript. Tenho formação em Licenciatura em Computação e hoje também atuo como professor técnico no Senac RS.',
+    skills: [
+        { category: 'Interpessoais', items: 'Escrita, resolução de problemas, proatividade, comunicação, trabalho em equipe.' },
+        { category: 'Linguagens', items: 'Português Nativo, Inglês B1.' },
+        { category: 'Linguagens de Programação', items: 'PHP, Javascript, Typescript, Python, Java.' },
+        { category: 'Frontend', items: 'HTML5, CSS3, Tailwind CSS, React, Next.js, Vue.js.' },
+        { category: 'Backend', items: 'Laravel, Node.js, Express.js, Nest.js, MySQL, PostgreSQL, MongoDB, Redis.' },
+        { category: 'DevOps', items: 'Git, Github, Docker, CI/CD, Testes Automatizados, AWS.' },
+        { category: 'Inteligência Artificial', items: 'Agentes de LLM (ex. Claude Code), n8n.' },
+        { category: 'Outros', items: 'Wordpress, Microsoft Office.' },
+    ],
+    experiences: [
+        {
+            title: 'Orientador de Educação Profissional',
+            company: 'Senac RS',
+            period: '03/2026 – presente',
+            location: 'Caxias do Sul, RS',
+            description:
+                'Atuo como instrutor de TI no curso Técnico em Desenvolvimento de Sistemas (TDS) e Informática Básica, sendo responsável pelo ensino de programação, desenvolvimento web e demais disciplinas da área. Além disso, estou atuando como treinador de alunos selecionados para as competições regionais promovidas pelo SENAC.',
+            tags: 'Docência, Informática Básica, Desenvolvimento de Sistemas',
+        },
+        {
+            title: 'Desenvolvedor PHP',
+            company: 'Voleyo',
+            period: '11/2024 – Presente',
+            location: 'Remoto',
+            description:
+                'Desenvolvimento de uma plataforma de gestão esportiva que conecta clubes e atletas em um único ambiente digital, eliminando intermediários e simplificando a comunicação entre as partes.\nA solução oferece ferramentas completas para administração de clubes, gestão de atletas, partidas, comandas, torneios, facilitação de interações diretas entre diversas outras funcionalidades.',
+            tags: 'PHP, Laravel, Inertia, React, Typescript, HTML5, CSS3, TailwindCSS, MySQL, Github, Docker, CI/CD, Laravel Cloud',
+        },
+        {
+            title: 'Bolsista Residência Pedagógica',
+            company: 'Capes - Colégio Municipal Pelotense',
+            period: '11/2022 – 04/2024',
+            location: 'Pelotas, RS',
+            description:
+                'Atuei como instrutor de inclusão digital para adultos em processo de requalificação profissional, ajudando pessoas a conquistarem autonomia no ambiente digital e ampliarem suas oportunidades no mercado de trabalho.',
+            tags: 'Docência, Informática Básica',
+        },
+        {
+            title: 'Desenvolvedor PHP',
+            company: 'BirdView Drone BioControl',
+            period: '07/2023 – 02/2024',
+            location: 'Remoto',
+            description:
+                'A arquitetura da aplicação foi aprimorada, melhorando significativamente a confiabilidade, performance e organização do código.\nO sistema de planejamento de missões de drones e o software de rotas de voo foi redesenhado, tornando as interfaces mais intuitivas e reduzindo a curva de aprendizado para os operadores. Também fui responsável pela gestão da infraestrutura em produção, garantindo estabilidade e disponibilidade contínua enquanto desenvolvia e otimizava funcionalidades conforme as demandas do time evoluíam.',
+            tags: 'PHP, Laravel, Inertia, React, Typescript, HTML5, CSS3, TailwindCSS, MySQL, Github, Docker, CI/CD, DigitalOcean',
+        },
+        {
+            title: 'Bolsista de Desenvolvimento Tecnológico',
+            company: 'IFSUL',
+            period: '08/2021 – 07/2023',
+            location: 'Remoto',
+            description:
+                'Participei do desenvolvimento de uma plataforma especializada em gestão de missões de drones para controle biológico de pragas na agricultura.\nFui responsável pelo planejamento interativo de rotas de voo, controle de acesso por perfil de usuário, separando permissões entre administradores, pilotos e clientes, além de todo o ciclo de cadastro de equipamentos, atribuição de missões e geração automatizada de relatórios a partir dos logs de voo.\nA arquitetura foi projetada para suportar múltiplos clientes de forma isolada, garantindo segurança e independência dos dados entre as operações.',
+            tags: 'PHP, Laravel, React, Javascript, HTML5, CSS3, MySQL, Github',
+        },
+        {
+            title: 'Desenvolvedor PHP',
+            company: 'Escola Mario Quintana',
+            period: '04/2021 – 08/2021',
+            location: 'Pelotas, RS',
+            description:
+                'Na Escola Mario Quintana, colaborei com a equipe interna de TI no desenvolvimento e expansão da plataforma de gestão de ordens de serviço da instituição.\nTrabalhei na construção de novos módulos dentro de uma arquitetura MVC da aplicação, implementando tanto a lógica de negócio no backend quanto as interfaces de uso no frontend. Também fui responsável pela criação de documentação técnica detalhada, garantindo a manutenibilidade e a continuidade dos módulos desenvolvidos a longo prazo.',
+            tags: 'PHP, SQL, Javascript, Jquery, HTML5, CSS3, Bootstrap',
+        },
+        {
+            title: 'Bolsista PIBID',
+            company: 'Capes - IFSUL',
+            period: '08/2018 – 01/2020',
+            location: 'Pelotas',
+            description: 'Desenvolvimento de jogos com scratch para o ensino de algoritmos e lógica de programação.',
+            tags: 'Docência, Informática Básica, Scratch',
+        },
+    ],
+    education: [
+        {
+            degree: 'Licenciatura em Computação',
+            institution: 'IFSUL - Instituto Federal Sul-rio-grandense',
+            period: '2018 – 2025',
+            location: 'Pelotas, RS',
+            description:
+                'Formação destinada ao exercício da docência em escolas públicas (estaduais, municipais e federais) e particulares. O currículo abrange a área tecnológica em computação acompanhada dos saberes pedagógicos.',
+        },
+    ],
+    courses: [
+        {
+            name: 'Pós Graduação em Engenharia e Arquitetura de Software',
+            platform: 'UCPel',
+            period: '05/2026 – Presente',
+            link: '',
+            description:
+                'A pós-graduação em Engenharia e Arquitetura de Software é um curso EAD voltado à formação de profissionais capazes de projetar, desenvolver e estruturar sistemas modernos, escaláveis e alinhados às boas práticas da engenharia de software.',
+            tags: '',
+        },
+        {
+            name: 'Engenharia de Agentes de IA',
+            platform: 'Alura',
+            period: '05/2026 – presente',
+            link: '',
+            description:
+                'Essa formação prepara profissionais para desenvolver agentes de IA utilizando Python, LangChain, APIs de LLMs, RAG, machine learning, MLOps e cloud computing.',
+            tags: '',
+        },
+        {
+            name: 'Carreira Desenvolvimento Back-End PHP',
+            platform: 'Alura',
+            period: '',
+            link: '',
+            description: '',
+            tags: 'PHP, Orientação a Objetos, Laravel, Symfony, Arquitetura de Software, Padrões de Projeto, Testes, DevOps',
+        },
+        {
+            name: 'Formação Engenharia de software',
+            platform: 'Alura',
+            period: '',
+            link: '',
+            description: '',
+            tags: 'Gestão de Requisitos, Arquitetura e Design de Sistemas, Padrões de Projeto, Banco de Dados, Testes de Software, Gestão de Projetos, Infraestrutura e Deploy',
+        },
+        {
+            name: 'Formação DevOps',
+            platform: 'Alura',
+            period: '',
+            link: '',
+            description: '',
+            tags: 'Virtualização e Provisionamento, Containerização, Integração e Entrega Contínua (CI/CD), Monitoramento',
+        },
+    ],
     publications: null,
     projects: null,
 };
