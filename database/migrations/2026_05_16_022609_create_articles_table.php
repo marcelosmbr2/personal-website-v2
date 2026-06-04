@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->longText('content')->nullable();
             $table->boolean('is_from_medium')->default(false);
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }

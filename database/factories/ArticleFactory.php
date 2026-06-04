@@ -25,6 +25,7 @@ class ArticleFactory extends Factory
             'is_favorite' => false,
             'is_from_medium' => false,
             'category' => fake()->randomElement(['Tecnologia', 'Filosofia', null]),
+            'published_at' => null,
         ];
     }
 }

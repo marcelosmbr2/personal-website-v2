@@ -6,8 +6,9 @@ use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
-#[Fillable(['name', 'description', 'content', 'external_link', 'image_url', 'is_favorite', 'is_from_medium', 'category'])]
+#[Fillable(['name', 'description', 'content', 'external_link', 'image_url', 'is_favorite', 'is_from_medium', 'category', 'published_at'])]
 class Article extends Model
 {
     /** @use HasFactory<ArticleFactory> */
@@ -18,6 +19,12 @@ class Article extends Model
         return [
             'is_favorite' => 'boolean',
             'is_from_medium' => 'boolean',
+            'published_at' => 'datetime',
         ];
+    }
+
+    public function getPublishedDateAttribute(): Carbon
+    {
+        return $this->published_at ?? $this->created_at;
     }
 }

@@ -69,6 +69,21 @@ test('can update an article', function () {
     ]);
 });
 
+test('can store an article with published_at', function () {
+    $this->actingAs(User::factory()->create())
+        ->post(route('admin.articles.store'), [
+            'name' => 'Artigo com Data',
+            'description' => 'Descrição',
+            'published_at' => '2025-01-15 10:00:00',
+        ])
+        ->assertRedirect(route('admin.articles.index'));
+
+    $this->assertDatabaseHas('articles', [
+        'name' => 'Artigo com Data',
+        'published_at' => '2025-01-15 10:00:00',
+    ]);
+});
+
 test('can delete an article', function () {
     $article = Article::factory()->create();
 

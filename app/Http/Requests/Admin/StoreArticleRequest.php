@@ -27,6 +27,7 @@ class StoreArticleRequest extends FormRequest
             'image_url' => ['nullable', 'string', 'max:255'],
             'content' => ['nullable', 'string'],
             'category' => ['nullable', 'string', 'in:Tecnologia,Filosofia'],
+            'published_at' => ['nullable', 'date'],
         ];
     }
 }

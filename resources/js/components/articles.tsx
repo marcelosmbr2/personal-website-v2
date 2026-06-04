@@ -8,6 +8,7 @@ type Article = {
     external_link?: string | null;
     image_url?: string | null;
     is_from_medium?: boolean;
+    published_at: string | null;
     created_at: string;
 };
 
@@ -58,7 +59,7 @@ function ArticleCard({ post }: { post: Article }) {
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2">
                     <time className="text-xs text-gray-500 dark:text-neutral-500">
-                        {formatDate(post.created_at)}
+                        {formatDate(post.published_at ?? post.created_at)}
                     </time>
                     {post.is_from_medium && (
                         <IconBrandMedium className="size-3.5 text-gray-500 dark:text-neutral-500" />

@@ -85,6 +85,16 @@ export default function CreateArticle() {
                                 <InputError message={errors.image_url} />
                             </div>
 
+                            <div className="grid gap-1.5">
+                                <Label htmlFor="published_at">Data de Publicação</Label>
+                                <Input
+                                    id="published_at"
+                                    name="published_at"
+                                    type="datetime-local"
+                                />
+                                <InputError message={errors.published_at} />
+                            </div>
+
                             <div className="flex items-center gap-2">
                                 <Checkbox
                                     id="is_from_medium"
