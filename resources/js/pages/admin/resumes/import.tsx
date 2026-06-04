@@ -4,7 +4,13 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { importMethod, index as resumesIndex } from '@/routes/admin/resumes';
 
 export default function ImportResume() {
@@ -37,13 +43,22 @@ export default function ImportResume() {
                             <div className="grid gap-1.5">
                                 <Label htmlFor="language">Idioma</Label>
                                 <Select name="language" defaultValue="">
-                                    <SelectTrigger id="language" className="w-full">
+                                    <SelectTrigger
+                                        id="language"
+                                        className="w-full"
+                                    >
                                         <SelectValue placeholder="Selecione o idioma" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="pt-BR">Português</SelectItem>
-                                        <SelectItem value="en">English</SelectItem>
-                                        <SelectItem value="es">Español</SelectItem>
+                                        <SelectItem value="pt-BR">
+                                            Português
+                                        </SelectItem>
+                                        <SelectItem value="en">
+                                            English
+                                        </SelectItem>
+                                        <SelectItem value="es">
+                                            Español
+                                        </SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.language} />
@@ -52,13 +67,22 @@ export default function ImportResume() {
                             <div className="grid gap-1.5">
                                 <Label htmlFor="status">Status</Label>
                                 <Select name="status" defaultValue="draft">
-                                    <SelectTrigger id="status" className="w-full">
+                                    <SelectTrigger
+                                        id="status"
+                                        className="w-full"
+                                    >
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="draft">Rascunho</SelectItem>
-                                        <SelectItem value="active">Ativo</SelectItem>
-                                        <SelectItem value="archived">Arquivado</SelectItem>
+                                        <SelectItem value="draft">
+                                            Rascunho
+                                        </SelectItem>
+                                        <SelectItem value="active">
+                                            Ativo
+                                        </SelectItem>
+                                        <SelectItem value="archived">
+                                            Arquivado
+                                        </SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.status} />

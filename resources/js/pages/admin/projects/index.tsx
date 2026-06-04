@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Form, Head } from '@inertiajs/react';
-import { IconPencil, IconPlus, IconStar, IconStarFilled, IconTrash } from '@tabler/icons-react';
+import {
+    IconPencil,
+    IconPlus,
+    IconStar,
+    IconStarFilled,
+    IconTrash,
+} from '@tabler/icons-react';
 import ProjectsController from '@/actions/App/Http/Controllers/Admin/ProjectsController';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
@@ -16,9 +22,28 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import {
+    Sheet,
+    SheetContent,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+} from '@/components/ui/sheet';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 import { Textarea } from '@/components/ui/textarea';
 import { index as projectsIndex } from '@/routes/admin/projects';
 
@@ -59,12 +84,19 @@ export default function Projects({ projects }: Props) {
     const [filterStatus, setFilterStatus] = useState('todos');
     const [filterTech, setFilterTech] = useState('todas');
 
-    const allTechnologies = [...new Set(projects.flatMap((p) => p.technologies ?? []))].sort();
+    const allTechnologies = [
+        ...new Set(projects.flatMap((p) => p.technologies ?? [])),
+    ].sort();
 
     const filteredProjects = projects.filter((project) => {
-        const matchesSearch = project.name.toLowerCase().includes(search.toLowerCase());
-        const matchesStatus = filterStatus === 'todos' || project.status === filterStatus;
-        const matchesTech = filterTech === 'todas' || (project.technologies ?? []).includes(filterTech);
+        const matchesSearch = project.name
+            .toLowerCase()
+            .includes(search.toLowerCase());
+        const matchesStatus =
+            filterStatus === 'todos' || project.status === filterStatus;
+        const matchesTech =
+            filterTech === 'todas' ||
+            (project.technologies ?? []).includes(filterTech);
         return matchesSearch && matchesStatus && matchesTech;
     });
 
@@ -98,14 +130,21 @@ export default function Projects({ projects }: Props) {
                 />
 
                 <div className="flex gap-2">
-                    <Select value={filterStatus} onValueChange={setFilterStatus}>
+                    <Select
+                        value={filterStatus}
+                        onValueChange={setFilterStatus}
+                    >
                         <SelectTrigger>
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="todos">Todos os status</SelectItem>
+                            <SelectItem value="todos">
+                                Todos os status
+                            </SelectItem>
                             <SelectItem value="completed">Concluído</SelectItem>
-                            <SelectItem value="in progress">Em Andamento</SelectItem>
+                            <SelectItem value="in progress">
+                                Em Andamento
+                            </SelectItem>
                             <SelectItem value="planned">Planejado</SelectItem>
                         </SelectContent>
                     </Select>
@@ -115,7 +154,9 @@ export default function Projects({ projects }: Props) {
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="todas">Todas as tecnologias</SelectItem>
+                            <SelectItem value="todas">
+                                Todas as tecnologias
+                            </SelectItem>
                             {allTechnologies.map((tech) => (
                                 <SelectItem key={tech} value={tech}>
                                     {tech}
@@ -139,24 +180,43 @@ export default function Projects({ projects }: Props) {
                     <TableBody>
                         {filteredProjects.map((project) => (
                             <TableRow key={project.id}>
-                                <TableCell className="font-medium">{project.name}</TableCell>
+                                <TableCell className="font-medium">
+                                    {project.name}
+                                </TableCell>
                                 <TableCell>
                                     <div className="flex flex-wrap gap-1">
-                                        {project.technologies?.slice(0, 3).map((tech) => (
-                                            <Badge key={tech} variant="outline" className="text-xs">
-                                                {tech}
-                                            </Badge>
-                                        ))}
+                                        {project.technologies
+                                            ?.slice(0, 3)
+                                            .map((tech) => (
+                                                <Badge
+                                                    key={tech}
+                                                    variant="outline"
+                                                    className="text-xs"
+                                                >
+                                                    {tech}
+                                                </Badge>
+                                            ))}
                                         {project.technologies?.length > 3 && (
-                                            <Badge variant="outline" className="text-xs">
-                                                +{project.technologies.length - 3}
+                                            <Badge
+                                                variant="outline"
+                                                className="text-xs"
+                                            >
+                                                +
+                                                {project.technologies.length -
+                                                    3}
                                             </Badge>
                                         )}
                                     </div>
                                 </TableCell>
                                 <TableCell>
-                                    <Badge variant={STATUS_VARIANT[project.status] ?? 'outline'}>
-                                        {STATUS_LABEL[project.status] ?? project.status}
+                                    <Badge
+                                        variant={
+                                            STATUS_VARIANT[project.status] ??
+                                            'outline'
+                                        }
+                                    >
+                                        {STATUS_LABEL[project.status] ??
+                                            project.status}
                                     </Badge>
                                 </TableCell>
                                 <TableCell>
@@ -179,7 +239,9 @@ export default function Projects({ projects }: Props) {
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            onClick={() => setDeleteProject(project)}
+                                            onClick={() =>
+                                                setDeleteProject(project)
+                                            }
                                         >
                                             <IconTrash className="size-4 text-destructive" />
                                         </Button>
@@ -198,7 +260,9 @@ export default function Projects({ projects }: Props) {
                         key={editingProject?.id ?? 'new'}
                         className="flex flex-1 flex-col overflow-hidden"
                         {...(editingProject
-                            ? ProjectsController.update.form({ project: editingProject.id })
+                            ? ProjectsController.update.form({
+                                  project: editingProject.id,
+                              })
                             : ProjectsController.store.form())}
                         options={{ preserveScroll: true }}
                         onSuccess={() => setSheetOpen(false)}
@@ -207,7 +271,9 @@ export default function Projects({ projects }: Props) {
                             <>
                                 <SheetHeader>
                                     <SheetTitle>
-                                        {editingProject ? 'Editar Projeto' : 'Novo Projeto'}
+                                        {editingProject
+                                            ? 'Editar Projeto'
+                                            : 'Novo Projeto'}
                                     </SheetTitle>
                                 </SheetHeader>
 
@@ -225,47 +291,71 @@ export default function Projects({ projects }: Props) {
                                     </div>
 
                                     <div className="grid gap-1.5">
-                                        <Label htmlFor="description">Descrição</Label>
+                                        <Label htmlFor="description">
+                                            Descrição
+                                        </Label>
                                         <Textarea
                                             id="description"
                                             name="description"
                                             required
-                                            defaultValue={editingProject?.description}
+                                            defaultValue={
+                                                editingProject?.description
+                                            }
                                             placeholder="Descreva o projeto..."
                                         />
-                                        <InputError message={errors.description} />
+                                        <InputError
+                                            message={errors.description}
+                                        />
                                     </div>
 
                                     <div className="grid gap-1.5">
                                         <Label htmlFor="status">Status</Label>
                                         <Select
                                             name="status"
-                                            defaultValue={editingProject?.status ?? 'in progress'}
+                                            defaultValue={
+                                                editingProject?.status ??
+                                                'in progress'
+                                            }
                                         >
-                                            <SelectTrigger id="status" className="w-full">
+                                            <SelectTrigger
+                                                id="status"
+                                                className="w-full"
+                                            >
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="completed">Concluído</SelectItem>
-                                                <SelectItem value="in progress">Em Andamento</SelectItem>
-                                                <SelectItem value="planned">Planejado</SelectItem>
+                                                <SelectItem value="completed">
+                                                    Concluído
+                                                </SelectItem>
+                                                <SelectItem value="in progress">
+                                                    Em Andamento
+                                                </SelectItem>
+                                                <SelectItem value="planned">
+                                                    Planejado
+                                                </SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <InputError message={errors.status} />
                                     </div>
 
                                     <div className="grid gap-1.5">
-                                        <Label htmlFor="technologies">Tecnologias</Label>
+                                        <Label htmlFor="technologies">
+                                            Tecnologias
+                                        </Label>
                                         <Input
                                             id="technologies"
                                             name="technologies"
-                                            defaultValue={editingProject?.technologies?.join(', ')}
+                                            defaultValue={editingProject?.technologies?.join(
+                                                ', ',
+                                            )}
                                             placeholder="Ex: Laravel, React, TypeScript"
                                         />
-                                        <p className="text-muted-foreground text-xs">
+                                        <p className="text-xs text-muted-foreground">
                                             Separe as tecnologias por vírgula
                                         </p>
-                                        <InputError message={errors.technologies} />
+                                        <InputError
+                                            message={errors.technologies}
+                                        />
                                     </div>
 
                                     <div className="grid gap-1.5">
@@ -274,7 +364,9 @@ export default function Projects({ projects }: Props) {
                                             id="link"
                                             name="link"
                                             type="url"
-                                            defaultValue={editingProject?.link ?? ''}
+                                            defaultValue={
+                                                editingProject?.link ?? ''
+                                            }
                                             placeholder="https://..."
                                         />
                                         <InputError message={errors.link} />
@@ -285,7 +377,9 @@ export default function Projects({ projects }: Props) {
                                         <Input
                                             id="image"
                                             name="image"
-                                            defaultValue={editingProject?.image ?? ''}
+                                            defaultValue={
+                                                editingProject?.image ?? ''
+                                            }
                                             placeholder="URL ou caminho da imagem"
                                         />
                                         <InputError message={errors.image} />
@@ -298,7 +392,9 @@ export default function Projects({ projects }: Props) {
                                             name="order"
                                             type="number"
                                             min={0}
-                                            defaultValue={editingProject?.order ?? 0}
+                                            defaultValue={
+                                                editingProject?.order ?? 0
+                                            }
                                         />
                                         <InputError message={errors.order} />
                                     </div>
@@ -307,14 +403,23 @@ export default function Projects({ projects }: Props) {
                                         <Checkbox
                                             id="is_favorite"
                                             name="is_favorite"
-                                            defaultChecked={editingProject?.is_favorite ?? false}
+                                            defaultChecked={
+                                                editingProject?.is_favorite ??
+                                                false
+                                            }
                                         />
-                                        <Label htmlFor="is_favorite">Marcar como destaque</Label>
+                                        <Label htmlFor="is_favorite">
+                                            Marcar como destaque
+                                        </Label>
                                     </div>
                                 </div>
 
                                 <SheetFooter>
-                                    <Button type="submit" disabled={processing} className="w-full">
+                                    <Button
+                                        type="submit"
+                                        disabled={processing}
+                                        className="w-full"
+                                    >
                                         Salvar
                                     </Button>
                                 </SheetFooter>
@@ -325,27 +430,40 @@ export default function Projects({ projects }: Props) {
             </Sheet>
 
             {/* Delete Dialog */}
-            <Dialog open={!!deleteProject} onOpenChange={() => setDeleteProject(null)}>
+            <Dialog
+                open={!!deleteProject}
+                onOpenChange={() => setDeleteProject(null)}
+            >
                 <DialogContent>
                     <DialogTitle>Excluir projeto</DialogTitle>
                     <DialogDescription>
                         Tem certeza que deseja excluir{' '}
-                        <span className="font-medium text-foreground">{deleteProject?.name}</span>?
-                        Essa ação não pode ser desfeita.
+                        <span className="font-medium text-foreground">
+                            {deleteProject?.name}
+                        </span>
+                        ? Essa ação não pode ser desfeita.
                     </DialogDescription>
                     {deleteProject && (
                         <Form
-                            {...ProjectsController.destroy.form({ project: deleteProject.id })}
+                            {...ProjectsController.destroy.form({
+                                project: deleteProject.id,
+                            })}
                             onSuccess={() => setDeleteProject(null)}
                         >
                             {({ processing }) => (
                                 <DialogFooter>
                                     <DialogClose asChild>
-                                        <Button variant="secondary" type="button">
+                                        <Button
+                                            variant="secondary"
+                                            type="button"
+                                        >
                                             Cancelar
                                         </Button>
                                     </DialogClose>
-                                    <Button variant="destructive" disabled={processing}>
+                                    <Button
+                                        variant="destructive"
+                                        disabled={processing}
+                                    >
                                         Excluir
                                     </Button>
                                 </DialogFooter>

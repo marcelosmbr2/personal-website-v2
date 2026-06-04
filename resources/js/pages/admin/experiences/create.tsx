@@ -8,7 +8,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
-import { create as experiencesCreate, index as experiencesIndex } from '@/routes/admin/experiences';
+import {
+    create as experiencesCreate,
+    index as experiencesIndex,
+} from '@/routes/admin/experiences';
 
 type IconMode = 'devicon' | 'upload';
 
@@ -67,29 +70,53 @@ export default function CreateExperience() {
                                 <Label>Ícone</Label>
                                 <RadioGroup
                                     value={iconMode}
-                                    onValueChange={(v) => setIconMode(v as IconMode)}
+                                    onValueChange={(v) =>
+                                        setIconMode(v as IconMode)
+                                    }
                                     className="flex gap-6"
                                 >
                                     <div className="flex items-center gap-2">
-                                        <RadioGroupItem value="devicon" id="icon-devicon" />
-                                        <Label htmlFor="icon-devicon">DevIcons</Label>
+                                        <RadioGroupItem
+                                            value="devicon"
+                                            id="icon-devicon"
+                                        />
+                                        <Label htmlFor="icon-devicon">
+                                            DevIcons
+                                        </Label>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <RadioGroupItem value="upload" id="icon-upload" />
-                                        <Label htmlFor="icon-upload">Upload</Label>
+                                        <RadioGroupItem
+                                            value="upload"
+                                            id="icon-upload"
+                                        />
+                                        <Label htmlFor="icon-upload">
+                                            Upload
+                                        </Label>
                                     </div>
                                 </RadioGroup>
-                                <input type="hidden" name="icon_type" value={iconMode} />
+                                <input
+                                    type="hidden"
+                                    name="icon_type"
+                                    value={iconMode}
+                                />
                                 {iconMode === 'devicon' && (
                                     <>
                                         <DevIconPicker name="icon_name" />
-                                        <InputError message={errors.icon_name} />
+                                        <InputError
+                                            message={errors.icon_name}
+                                        />
                                     </>
                                 )}
                                 {iconMode === 'upload' && (
                                     <>
-                                        <Input type="file" name="icon_file" accept="image/*" />
-                                        <InputError message={errors.icon_file} />
+                                        <Input
+                                            type="file"
+                                            name="icon_file"
+                                            accept="image/*"
+                                        />
+                                        <InputError
+                                            message={errors.icon_file}
+                                        />
                                     </>
                                 )}
                             </div>
@@ -106,7 +133,9 @@ export default function CreateExperience() {
                             </div>
 
                             <div className="grid gap-1.5">
-                                <Label htmlFor="technologies">Tecnologias</Label>
+                                <Label htmlFor="technologies">
+                                    Tecnologias
+                                </Label>
                                 <Input
                                     id="technologies"
                                     name="technologies"

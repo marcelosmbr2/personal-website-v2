@@ -17,7 +17,9 @@ export function NavigationHeader() {
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
-            const atBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 10;
+            const atBottom =
+                window.innerHeight + scrollY >=
+                document.documentElement.scrollHeight - 10;
 
             if (atBottom) {
                 setActiveSection(navLinks[navLinks.length - 1].section);
@@ -46,20 +48,20 @@ export function NavigationHeader() {
     }, []);
 
     return (
-        <header className="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
-            <nav className="mt-4 relative max-w-3xl w-full bg-white border border-gray-200 rounded-[24px] mx-2 flex flex-wrap md:flex-nowrap items-center justify-between p-1 ps-4 md:py-0 sm:mx-auto dark:bg-neutral-900 dark:border-neutral-700">
-                <h1 className="font-bold text-xl">SMBR</h1>
+        <header className="sticky inset-x-0 top-0 z-50 flex w-full flex-wrap text-sm md:flex-nowrap md:justify-start">
+            <nav className="relative mx-2 mt-4 flex w-full max-w-3xl flex-wrap items-center justify-between rounded-[24px] border border-gray-200 bg-white p-1 ps-4 sm:mx-auto md:flex-nowrap md:py-0 dark:border-neutral-700 dark:bg-neutral-900">
+                <h1 className="text-xl font-bold">SMBR</h1>
                 <div className="flex items-center gap-1 md:order-4 md:ms-4">
                     <ThemeToggle />
                     <GuestMobileSidebar />
                 </div>
-                <div className="hidden overflow-hidden transition-all duration-300 basis-full grow md:block">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 md:gap-3 mt-3 md:mt-0 py-2 md:py-0 md:ps-7">
+                <div className="hidden grow basis-full overflow-hidden transition-all duration-300 md:block">
+                    <div className="mt-3 flex flex-col gap-2 py-2 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-3 md:py-0 md:ps-7">
                         {navLinks.map(({ label, href, section }) => (
                             <a
                                 key={href}
                                 href={href}
-                                className={`py-0.5 md:py-3 px-4 md:px-1 border-s-2 md:border-s-0 md:border-b-2 transition-colors focus:outline-hidden ${
+                                className={`border-s-2 px-4 py-0.5 transition-colors focus:outline-hidden md:border-s-0 md:border-b-2 md:px-1 md:py-3 ${
                                     activeSection === section
                                         ? 'border-gray-800 font-medium text-gray-800 dark:border-neutral-200 dark:text-neutral-200'
                                         : 'border-transparent text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200'

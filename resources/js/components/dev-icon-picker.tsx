@@ -27,7 +27,9 @@ export function DevIconPicker({ name, defaultValue }: DevIconPickerProps) {
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        fetch('https://raw.githubusercontent.com/devicons/devicon/master/devicon.json')
+        fetch(
+            'https://raw.githubusercontent.com/devicons/devicon/master/devicon.json',
+        )
             .then((res) => res.json())
             .then((data: DevIcon[]) => {
                 setIcons(data);
@@ -37,7 +39,10 @@ export function DevIconPicker({ name, defaultValue }: DevIconPickerProps) {
     }, []);
 
     const filtered = React.useMemo(
-        () => icons.filter((icon) => icon.name.toLowerCase().includes(search.toLowerCase())),
+        () =>
+            icons.filter((icon) =>
+                icon.name.toLowerCase().includes(search.toLowerCase()),
+            ),
         [icons, search],
     );
 
@@ -51,13 +56,13 @@ export function DevIconPicker({ name, defaultValue }: DevIconPickerProps) {
                 onChange={(e) => setSearch(e.target.value)}
             />
 
-            <div className="border-border rounded-md border">
+            <div className="rounded-md border border-border">
                 {loading ? (
-                    <div className="text-muted-foreground flex h-48 items-center justify-center text-sm">
+                    <div className="flex h-48 items-center justify-center text-sm text-muted-foreground">
                         Carregando ícones...
                     </div>
                 ) : filtered.length === 0 ? (
-                    <div className="text-muted-foreground flex h-48 items-center justify-center text-sm">
+                    <div className="flex h-48 items-center justify-center text-sm text-muted-foreground">
                         Nenhum ícone encontrado.
                     </div>
                 ) : (
@@ -69,8 +74,9 @@ export function DevIconPicker({ name, defaultValue }: DevIconPickerProps) {
                                 title={icon.name}
                                 onClick={() => setSelected(icon.name)}
                                 className={cn(
-                                    'hover:bg-accent flex flex-col items-center gap-1 rounded p-1.5 transition-colors',
-                                    selected === icon.name && 'bg-accent ring-ring ring-2',
+                                    'flex flex-col items-center gap-1 rounded p-1.5 transition-colors hover:bg-accent',
+                                    selected === icon.name &&
+                                        'bg-accent ring-2 ring-ring',
                                 )}
                             >
                                 <img
@@ -79,7 +85,7 @@ export function DevIconPicker({ name, defaultValue }: DevIconPickerProps) {
                                     className="size-7"
                                     loading="lazy"
                                 />
-                                <span className="text-muted-foreground w-full truncate text-center text-[10px]">
+                                <span className="w-full truncate text-center text-[10px] text-muted-foreground">
                                     {icon.name}
                                 </span>
                             </button>
@@ -89,7 +95,7 @@ export function DevIconPicker({ name, defaultValue }: DevIconPickerProps) {
             </div>
 
             {selected && (
-                <p className="text-muted-foreground text-xs">
+                <p className="text-xs text-muted-foreground">
                     Selecionado: <strong>{selected}</strong>
                 </p>
             )}

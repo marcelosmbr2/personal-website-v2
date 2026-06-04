@@ -1,7 +1,18 @@
-import { Document, Font, Link, Page, Path, StyleSheet, Svg, Text, View } from '@react-pdf/renderer';
+import {
+    Document,
+    Font,
+    Link,
+    Page,
+    Path,
+    StyleSheet,
+    Svg,
+    Text,
+    View,
+} from '@react-pdf/renderer';
 
 const ICONS = {
-    location: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+    location:
+        'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
     email: 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
     phone: 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z',
     linkedin:
@@ -13,9 +24,21 @@ const ICONS = {
 Font.register({
     family: 'Alegreya',
     fonts: [
-        { src: '/fonts/Alegreya-Regular.ttf', fontWeight: 400, fontStyle: 'normal' },
-        { src: '/fonts/Alegreya-Regular.ttf', fontWeight: 700, fontStyle: 'normal' },
-        { src: '/fonts/Alegreya-Italic.ttf',  fontWeight: 400, fontStyle: 'italic' },
+        {
+            src: '/fonts/Alegreya-Regular.ttf',
+            fontWeight: 400,
+            fontStyle: 'normal',
+        },
+        {
+            src: '/fonts/Alegreya-Regular.ttf',
+            fontWeight: 700,
+            fontStyle: 'normal',
+        },
+        {
+            src: '/fonts/Alegreya-Italic.ttf',
+            fontWeight: 400,
+            fontStyle: 'italic',
+        },
     ],
 });
 
@@ -101,9 +124,24 @@ const s = StyleSheet.create({
     },
     // Header
     headerName: { fontSize: 22, fontWeight: 700, marginBottom: 8.78 },
-    headerTitle: { fontSize: 17, fontWeight: 400, marginLeft: 8, color: '#333' },
+    headerTitle: {
+        fontSize: 17,
+        fontWeight: 400,
+        marginLeft: 8,
+        color: '#333',
+    },
     headerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
-    headerMeta: { flexDirection: 'row', flexWrap: 'wrap', columnGap: 14, rowGap: 5, marginBottom: 5, color: '#333', fontSize: 11, fontWeight: 400, lineHeight: 1.333 },
+    headerMeta: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        columnGap: 14,
+        rowGap: 5,
+        marginBottom: 5,
+        color: '#333',
+        fontSize: 11,
+        fontWeight: 400,
+        lineHeight: 1.333,
+    },
     headerMetaItem: { flexDirection: 'row', alignItems: 'center', gap: 3 },
     // Section
     section: { marginTop: 10 },
@@ -120,7 +158,11 @@ const s = StyleSheet.create({
     skillCategory: { fontWeight: 700, marginBottom: 1 },
     skillItems: { color: '#333' },
     // Experience / Education / Course items
-    entryRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 1 },
+    entryRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 1,
+    },
     entryTitle: { fontWeight: 700 },
     entryRight: { textAlign: 'right', color: '#333' },
     entryCompany: { fontStyle: 'italic', color: '#333', marginBottom: 2 },
@@ -131,7 +173,12 @@ const s = StyleSheet.create({
 
 function ContactIcon({ icon }: { icon: string }) {
     return (
-        <Svg width={9} height={9} viewBox="0 0 24 24" style={{ marginRight: 2, marginTop: 1 }}>
+        <Svg
+            width={9}
+            height={9}
+            viewBox="0 0 24 24"
+            style={{ marginRight: 2, marginTop: 1 }}
+        >
             <Path d={icon} fill="#444" />
         </Svg>
     );
@@ -158,7 +205,16 @@ function Tags({ value }: { value: string }) {
 }
 
 export function ResumePDF({ data }: { data: ResumeContent }) {
-    const { header, summary, skills, experiences, education, courses, publications, projects } = data;
+    const {
+        header,
+        summary,
+        skills,
+        experiences,
+        education,
+        courses,
+        publications,
+        projects,
+    } = data;
 
     const leftSkills = skills.filter((_, i) => i % 2 === 0);
     const rightSkills = skills.filter((_, i) => i % 2 !== 0);
@@ -169,7 +225,9 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                 {/* Header */}
                 <View style={s.headerRow}>
                     <Text style={s.headerName}>{header.name}</Text>
-                    {!!header.title && <Text style={s.headerTitle}>{header.title}</Text>}
+                    {!!header.title && (
+                        <Text style={s.headerTitle}>{header.title}</Text>
+                    )}
                 </View>
                 <View style={s.headerMeta}>
                     {!!header.location && (
@@ -215,7 +273,11 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                 {/* Resumo */}
                 <View>
                     <SectionTitle>Resumo</SectionTitle>
-                    {!!summary && <Text style={{ color: '#333', marginBottom: 4 }}>{summary}</Text>}
+                    {!!summary && (
+                        <Text style={{ color: '#333', marginBottom: 4 }}>
+                            {summary}
+                        </Text>
+                    )}
                 </View>
 
                 {/* Habilidades */}
@@ -225,16 +287,24 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                         <View style={s.skillsLeftCol}>
                             {leftSkills.map((skill, i) => (
                                 <View key={i} style={{ marginBottom: 10 }}>
-                                    <Text style={s.skillCategory}>{skill.category}</Text>
-                                    <Text style={s.skillItems}>{skill.items}</Text>
+                                    <Text style={s.skillCategory}>
+                                        {skill.category}
+                                    </Text>
+                                    <Text style={s.skillItems}>
+                                        {skill.items}
+                                    </Text>
                                 </View>
                             ))}
                         </View>
                         <View style={s.skillsRightCol}>
                             {rightSkills.map((skill, i) => (
                                 <View key={i} style={{ marginBottom: 10 }}>
-                                    <Text style={s.skillCategory}>{skill.category}</Text>
-                                    <Text style={s.skillItems}>{skill.items}</Text>
+                                    <Text style={s.skillCategory}>
+                                        {skill.category}
+                                    </Text>
+                                    <Text style={s.skillItems}>
+                                        {skill.items}
+                                    </Text>
                                 </View>
                             ))}
                         </View>
@@ -251,7 +321,9 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                                 <Text style={s.entryRight}>{exp.period}</Text>
                             </View>
                             <View style={s.entryRow}>
-                                <Text style={s.entryCompany}>{exp.company}</Text>
+                                <Text style={s.entryCompany}>
+                                    {exp.company}
+                                </Text>
                                 <Text style={s.entryRight}>{exp.location}</Text>
                             </View>
                             {!!exp.description &&
@@ -261,7 +333,15 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                                     .map((para, pi, arr) => (
                                         <Text
                                             key={pi}
-                                            style={[s.entryDescription, { marginBottom: pi < arr.length - 1 ? 6 : 3 }]}
+                                            style={[
+                                                s.entryDescription,
+                                                {
+                                                    marginBottom:
+                                                        pi < arr.length - 1
+                                                            ? 6
+                                                            : 3,
+                                                },
+                                            ]}
                                         >
                                             {para}
                                         </Text>
@@ -281,11 +361,15 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                                 <Text style={s.entryRight}>{edu.period}</Text>
                             </View>
                             <View style={s.entryRow}>
-                                <Text style={s.entryCompany}>{edu.institution}</Text>
+                                <Text style={s.entryCompany}>
+                                    {edu.institution}
+                                </Text>
                                 <Text style={s.entryRight}>{edu.location}</Text>
                             </View>
                             {!!edu.description && (
-                                <Text style={s.entryDescription}>{edu.description}</Text>
+                                <Text style={s.entryDescription}>
+                                    {edu.description}
+                                </Text>
                             )}
                         </View>
                     ))}
@@ -297,23 +381,44 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                     {courses.map((course, i) => (
                         <View key={i} style={s.entryItem}>
                             <View style={s.entryRow}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                                    <Text style={s.entryTitle}>{course.name}</Text>
+                                <View
+                                    style={{
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        gap: 4,
+                                    }}
+                                >
+                                    <Text style={s.entryTitle}>
+                                        {course.name}
+                                    </Text>
                                     {!!course.link && (
                                         <Link src={course.link}>
-                                            <Svg width={9} height={9} viewBox="0 0 24 24">
-                                                <Path d={ICONS.link} fill="#777BB4" />
+                                            <Svg
+                                                width={9}
+                                                height={9}
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <Path
+                                                    d={ICONS.link}
+                                                    fill="#777BB4"
+                                                />
                                             </Svg>
                                         </Link>
                                     )}
                                 </View>
-                                <Text style={s.entryRight}>{course.period}</Text>
+                                <Text style={s.entryRight}>
+                                    {course.period}
+                                </Text>
                             </View>
                             {!!course.platform && (
-                                <Text style={s.entryCompany}>{course.platform}</Text>
+                                <Text style={s.entryCompany}>
+                                    {course.platform}
+                                </Text>
                             )}
                             {!!course.description && (
-                                <Text style={s.entryDescription}>{course.description}</Text>
+                                <Text style={s.entryDescription}>
+                                    {course.description}
+                                </Text>
                             )}
                             <Tags value={course.tags} />
                         </View>
@@ -327,14 +432,22 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                         {publications.map((pub, i) => (
                             <View key={i} style={s.entryItem}>
                                 <View style={s.entryRow}>
-                                    <Text style={s.entryTitle}>{pub.title}</Text>
-                                    <Text style={s.entryRight}>{pub.period}</Text>
+                                    <Text style={s.entryTitle}>
+                                        {pub.title}
+                                    </Text>
+                                    <Text style={s.entryRight}>
+                                        {pub.period}
+                                    </Text>
                                 </View>
                                 {!!pub.publisher && (
-                                    <Text style={s.entryCompany}>{pub.publisher}</Text>
+                                    <Text style={s.entryCompany}>
+                                        {pub.publisher}
+                                    </Text>
                                 )}
                                 {!!pub.description && (
-                                    <Text style={s.entryDescription}>{pub.description}</Text>
+                                    <Text style={s.entryDescription}>
+                                        {pub.description}
+                                    </Text>
                                 )}
                             </View>
                         ))}
@@ -348,11 +461,17 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                         {projects.map((proj, i) => (
                             <View key={i} style={s.entryItem}>
                                 <View style={s.entryRow}>
-                                    <Text style={s.entryTitle}>{proj.name}</Text>
-                                    <Text style={s.entryRight}>{proj.period}</Text>
+                                    <Text style={s.entryTitle}>
+                                        {proj.name}
+                                    </Text>
+                                    <Text style={s.entryRight}>
+                                        {proj.period}
+                                    </Text>
                                 </View>
                                 {!!proj.description && (
-                                    <Text style={s.entryDescription}>{proj.description}</Text>
+                                    <Text style={s.entryDescription}>
+                                        {proj.description}
+                                    </Text>
                                 )}
                                 <Tags value={proj.tags} />
                             </View>

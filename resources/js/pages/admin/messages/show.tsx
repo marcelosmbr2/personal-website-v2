@@ -17,7 +17,10 @@ interface Props {
     message: Message;
 }
 
-const TIPO_VARIANT: Record<Message['type'], 'default' | 'secondary' | 'destructive' | 'outline'> = {
+const TIPO_VARIANT: Record<
+    Message['type'],
+    'default' | 'secondary' | 'destructive' | 'outline'
+> = {
     contato: 'default',
     bug: 'destructive',
     emprego: 'outline',
@@ -47,7 +50,9 @@ export default function ShowMessage({ message }: Props) {
                         <Badge variant={TIPO_VARIANT[message.type]}>
                             {TIPO_LABEL[message.type]}
                         </Badge>
-                        <h1 className="text-xl font-semibold">{message.subject}</h1>
+                        <h1 className="text-xl font-semibold">
+                            {message.subject}
+                        </h1>
                     </div>
 
                     <Card className="shadow-none">
@@ -74,7 +79,9 @@ export default function ShowMessage({ message }: Props) {
                                 Mensagem
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="whitespace-pre-wrap">{message.body}</CardContent>
+                        <CardContent className="whitespace-pre-wrap">
+                            {message.body}
+                        </CardContent>
                     </Card>
                 </div>
             </div>

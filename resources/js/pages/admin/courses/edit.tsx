@@ -4,7 +4,13 @@ import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { index as coursesIndex } from '@/routes/admin/courses';
 
@@ -71,15 +77,29 @@ export default function EditCourse({ course }: Props) {
 
                             <div className="grid gap-1.5">
                                 <Label htmlFor="platform">Plataforma</Label>
-                                <Select name="platform" defaultValue={course.platform}>
-                                    <SelectTrigger id="platform" className="w-full">
+                                <Select
+                                    name="platform"
+                                    defaultValue={course.platform}
+                                >
+                                    <SelectTrigger
+                                        id="platform"
+                                        className="w-full"
+                                    >
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="Udemy">Udemy</SelectItem>
-                                        <SelectItem value="Coursera">Coursera</SelectItem>
-                                        <SelectItem value="YouTube">YouTube</SelectItem>
-                                        <SelectItem value="Alura">Alura</SelectItem>
+                                        <SelectItem value="Udemy">
+                                            Udemy
+                                        </SelectItem>
+                                        <SelectItem value="Coursera">
+                                            Coursera
+                                        </SelectItem>
+                                        <SelectItem value="YouTube">
+                                            YouTube
+                                        </SelectItem>
+                                        <SelectItem value="Alura">
+                                            Alura
+                                        </SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.platform} />
@@ -87,15 +107,29 @@ export default function EditCourse({ course }: Props) {
 
                             <div className="grid gap-1.5">
                                 <Label htmlFor="status">Status</Label>
-                                <Select name="status" defaultValue={course.status}>
-                                    <SelectTrigger id="status" className="w-full">
+                                <Select
+                                    name="status"
+                                    defaultValue={course.status}
+                                >
+                                    <SelectTrigger
+                                        id="status"
+                                        className="w-full"
+                                    >
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="completed">completed</SelectItem>
-                                        <SelectItem value="in progress">in progress</SelectItem>
-                                        <SelectItem value="planned">planned</SelectItem>
-                                        <SelectItem value="pending">pending</SelectItem>
+                                        <SelectItem value="completed">
+                                            completed
+                                        </SelectItem>
+                                        <SelectItem value="in progress">
+                                            in progress
+                                        </SelectItem>
+                                        <SelectItem value="planned">
+                                            planned
+                                        </SelectItem>
+                                        <SelectItem value="pending">
+                                            pending
+                                        </SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.status} />

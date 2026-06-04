@@ -3,10 +3,20 @@ import { Head } from '@inertiajs/react';
 import { setLayoutProps } from '@inertiajs/react';
 import GuestLayout from '@/layouts/guest-layout';
 import { Articles } from '@/components/articles';
-import { InputGroup, InputGroupInput, InputGroupAddon } from '@/components/ui/input-group';
+import {
+    InputGroup,
+    InputGroupInput,
+    InputGroupAddon,
+} from '@/components/ui/input-group';
 import { IconArrowLeft, IconSearch } from '@/components/icons';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 type Category = 'Tecnologia' | 'Filosofia';
 
@@ -23,7 +33,8 @@ type Article = {
 
 export default function ArticlesIndex({ articles }: { articles: Article[] }) {
     const [search, setSearch] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState<Category>('Tecnologia');
+    const [selectedCategory, setSelectedCategory] =
+        useState<Category>('Tecnologia');
 
     setLayoutProps({ layout: GuestLayout });
 
@@ -39,11 +50,17 @@ export default function ArticlesIndex({ articles }: { articles: Article[] }) {
     return (
         <>
             <Head title="Blog" />
-            <div className="w-full max-w-3xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto w-full max-w-3xl px-4 pt-10 pb-16 sm:px-6 lg:px-8">
                 <div className="mb-5">
-                    <div className="flex items-center justify-between mb-3">
-                        <h1 className="font-medium text-gray-800 dark:text-neutral-200">Blog</h1>
-                        <Button variant="ghost" size="icon" onClick={() => window.history.back()}>
+                    <div className="mb-3 flex items-center justify-between">
+                        <h1 className="font-medium text-gray-800 dark:text-neutral-200">
+                            Blog
+                        </h1>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => window.history.back()}
+                        >
                             <IconArrowLeft />
                         </Button>
                     </div>
@@ -58,12 +75,19 @@ export default function ArticlesIndex({ articles }: { articles: Article[] }) {
                             <IconSearch className="size-4" />
                         </InputGroupAddon>
                     </InputGroup>
-                    <Select value={selectedCategory} onValueChange={(v) => setSelectedCategory(v as Category)}>
+                    <Select
+                        value={selectedCategory}
+                        onValueChange={(v) =>
+                            setSelectedCategory(v as Category)
+                        }
+                    >
                         <SelectTrigger className="mt-3">
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="Tecnologia">Tecnologia</SelectItem>
+                            <SelectItem value="Tecnologia">
+                                Tecnologia
+                            </SelectItem>
                             <SelectItem value="Filosofia">Filosofia</SelectItem>
                         </SelectContent>
                     </Select>

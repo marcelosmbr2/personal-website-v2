@@ -20,7 +20,9 @@ createInertiaApp({
     },
     strictMode: true,
     resolve: (name) => {
-        const pages = import.meta.glob('./pages/{auth,guest}/**/*.tsx', { eager: true });
+        const pages = import.meta.glob('./pages/{auth,guest}/**/*.tsx', {
+            eager: true,
+        });
         return pages[`./pages/${name}.tsx`];
     },
     withApp(app) {

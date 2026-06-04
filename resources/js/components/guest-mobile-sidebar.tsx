@@ -33,7 +33,7 @@ export function GuestMobileSidebar() {
                     type="button"
                     variant="outline"
                     size="icon"
-                    className="flex justify-center items-center size-9.5 border border-gray-200 text-gray-500 rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    className="flex size-9.5 items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:bg-gray-200 focus:bg-gray-200 focus:outline-hidden dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
                     aria-label="Toggle navigation"
                 >
                     <IconMenu2 />
@@ -43,7 +43,7 @@ export function GuestMobileSidebar() {
                 <SheetHeader>
                     <SheetTitle>SMBR</SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col gap-4 mt-8">
+                <nav className="mt-8 flex flex-col gap-4">
                     {navLinks.map(({ label, href, section }) => (
                         <a
                             key={section}
@@ -52,7 +52,7 @@ export function GuestMobileSidebar() {
                                 setActiveSection(section);
                                 setOpen(false);
                             }}
-                            className={`py-2 px-4 border-s-2 transition-colors focus:outline-hidden ${
+                            className={`border-s-2 px-4 py-2 transition-colors focus:outline-hidden ${
                                 activeSection === section
                                     ? 'border-gray-800 font-medium text-gray-800 dark:border-neutral-200 dark:text-neutral-200'
                                     : 'border-transparent text-gray-500 hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200'

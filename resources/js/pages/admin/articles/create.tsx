@@ -7,9 +7,18 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { create as articlesCreate, index as articlesIndex } from '@/routes/admin/articles';
+import {
+    create as articlesCreate,
+    index as articlesIndex,
+} from '@/routes/admin/articles';
 
 export default function CreateArticle() {
     const [isFromMedium, setIsFromMedium] = useState(false);
@@ -53,19 +62,28 @@ export default function CreateArticle() {
                             <div className="grid gap-1.5">
                                 <Label htmlFor="category">Categoria</Label>
                                 <Select name="category" defaultValue="">
-                                    <SelectTrigger id="category" className="w-64">
+                                    <SelectTrigger
+                                        id="category"
+                                        className="w-64"
+                                    >
                                         <SelectValue placeholder="Sem categoria" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="Tecnologia">Tecnologia</SelectItem>
-                                        <SelectItem value="Filosofia">Filosofia</SelectItem>
+                                        <SelectItem value="Tecnologia">
+                                            Tecnologia
+                                        </SelectItem>
+                                        <SelectItem value="Filosofia">
+                                            Filosofia
+                                        </SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.category} />
                             </div>
 
                             <div className="grid gap-1.5">
-                                <Label htmlFor="external_link">Link Externo</Label>
+                                <Label htmlFor="external_link">
+                                    Link Externo
+                                </Label>
                                 <Input
                                     id="external_link"
                                     name="external_link"
@@ -86,7 +104,9 @@ export default function CreateArticle() {
                             </div>
 
                             <div className="grid gap-1.5">
-                                <Label htmlFor="published_at">Data de Publicação</Label>
+                                <Label htmlFor="published_at">
+                                    Data de Publicação
+                                </Label>
                                 <Input
                                     id="published_at"
                                     name="published_at"
@@ -100,14 +120,20 @@ export default function CreateArticle() {
                                     id="is_from_medium"
                                     name="is_from_medium"
                                     checked={isFromMedium}
-                                    onCheckedChange={(checked) => setIsFromMedium(!!checked)}
+                                    onCheckedChange={(checked) =>
+                                        setIsFromMedium(!!checked)
+                                    }
                                 />
-                                <Label htmlFor="is_from_medium">Publicado no Medium</Label>
+                                <Label htmlFor="is_from_medium">
+                                    Publicado no Medium
+                                </Label>
                             </div>
 
                             <div className="flex items-center gap-2">
                                 <Checkbox id="is_favorite" name="is_favorite" />
-                                <Label htmlFor="is_favorite">Marcar como destaque</Label>
+                                <Label htmlFor="is_favorite">
+                                    Marcar como destaque
+                                </Label>
                             </div>
 
                             {!isFromMedium && (

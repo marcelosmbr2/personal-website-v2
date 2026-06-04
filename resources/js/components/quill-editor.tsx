@@ -35,7 +35,12 @@ export default function QuillEditor({ name, defaultValue = '' }: Props) {
     return (
         <>
             <div ref={containerRef} className="w-full" />
-            <input type="hidden" name={name} ref={hiddenRef} defaultValue={defaultValue} />
+            <input
+                type="hidden"
+                name={name}
+                ref={hiddenRef}
+                defaultValue={defaultValue}
+            />
         </>
     );
 }

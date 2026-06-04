@@ -13,8 +13,19 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { create as experiencesCreate, edit as experiencesEdit, index as experiencesIndex } from '@/routes/admin/experiences';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
+import {
+    create as experiencesCreate,
+    edit as experiencesEdit,
+    index as experiencesIndex,
+} from '@/routes/admin/experiences';
 
 interface Experience {
     id: number;
@@ -32,7 +43,9 @@ interface Props {
 }
 
 export default function Experiences({ experiences }: Props) {
-    const [deleteExperience, setDeleteExperience] = useState<Experience | null>(null);
+    const [deleteExperience, setDeleteExperience] = useState<Experience | null>(
+        null,
+    );
     const [search, setSearch] = useState('');
 
     const filteredExperiences = experiences.filter((experience) => {
@@ -78,30 +91,47 @@ export default function Experiences({ experiences }: Props) {
                     <TableBody>
                         {filteredExperiences.map((experience) => (
                             <TableRow key={experience.id}>
-                                <TableCell className="font-medium">{experience.title}</TableCell>
+                                <TableCell className="font-medium">
+                                    {experience.title}
+                                </TableCell>
                                 <TableCell>{experience.company}</TableCell>
                                 <TableCell>{experience.period}</TableCell>
                                 <TableCell>
                                     <div className="flex flex-wrap gap-1">
-                                        {experience.technologies?.map((tech) => (
-                                            <Badge key={tech} variant="secondary">
-                                                {tech}
-                                            </Badge>
-                                        ))}
+                                        {experience.technologies?.map(
+                                            (tech) => (
+                                                <Badge
+                                                    key={tech}
+                                                    variant="secondary"
+                                                >
+                                                    {tech}
+                                                </Badge>
+                                            ),
+                                        )}
                                     </div>
                                 </TableCell>
                                 <TableCell>{experience.order}</TableCell>
                                 <TableCell>
                                     <div className="flex gap-1">
-                                        <Button variant="ghost" size="icon" asChild>
-                                            <Link href={experiencesEdit({ experience: experience.id })}>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            asChild
+                                        >
+                                            <Link
+                                                href={experiencesEdit({
+                                                    experience: experience.id,
+                                                })}
+                                            >
                                                 <IconPencil className="size-4" />
                                             </Link>
                                         </Button>
                                         <Button
                                             variant="ghost"
                                             size="icon"
-                                            onClick={() => setDeleteExperience(experience)}
+                                            onClick={() =>
+                                                setDeleteExperience(experience)
+                                            }
                                         >
                                             <IconTrash className="size-4 text-destructive" />
                                         </Button>
@@ -114,28 +144,44 @@ export default function Experiences({ experiences }: Props) {
             </div>
 
             {/* Delete Dialog */}
-            <Dialog open={!!deleteExperience} onOpenChange={() => setDeleteExperience(null)}>
+            <Dialog
+                open={!!deleteExperience}
+                onOpenChange={() => setDeleteExperience(null)}
+            >
                 <DialogContent>
                     <DialogTitle>Excluir experiência</DialogTitle>
                     <DialogDescription>
                         Tem certeza que deseja excluir{' '}
-                        <span className="font-medium text-foreground">{deleteExperience?.title}</span> em{' '}
-                        <span className="font-medium text-foreground">{deleteExperience?.company}</span>?
-                        Essa ação não pode ser desfeita.
+                        <span className="font-medium text-foreground">
+                            {deleteExperience?.title}
+                        </span>{' '}
+                        em{' '}
+                        <span className="font-medium text-foreground">
+                            {deleteExperience?.company}
+                        </span>
+                        ? Essa ação não pode ser desfeita.
                     </DialogDescription>
                     {deleteExperience && (
                         <Form
-                            {...ExperiencesController.destroy.form({ experience: deleteExperience.id })}
+                            {...ExperiencesController.destroy.form({
+                                experience: deleteExperience.id,
+                            })}
                             onSuccess={() => setDeleteExperience(null)}
                         >
                             {({ processing }) => (
                                 <DialogFooter>
                                     <DialogClose asChild>
-                                        <Button variant="secondary" type="button">
+                                        <Button
+                                            variant="secondary"
+                                            type="button"
+                                        >
                                             Cancelar
                                         </Button>
                                     </DialogClose>
-                                    <Button variant="destructive" disabled={processing}>
+                                    <Button
+                                        variant="destructive"
+                                        disabled={processing}
+                                    >
                                         Excluir
                                     </Button>
                                 </DialogFooter>

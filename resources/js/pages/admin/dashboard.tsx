@@ -1,13 +1,32 @@
 import { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
-import { IconBug, IconBriefcase, IconEye, IconMail, IconMailbox } from '@tabler/icons-react';
+import {
+    IconBug,
+    IconBriefcase,
+    IconEye,
+    IconMail,
+    IconMailbox,
+} from '@tabler/icons-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 import { dashboard } from '@/routes';
 import { show as messagesShow } from '@/routes/admin/messages';
 
@@ -27,7 +46,10 @@ interface DashboardProps {
     recentMessages: Message[];
 }
 
-const TIPO_VARIANT: Record<Message['type'], 'default' | 'secondary' | 'destructive' | 'outline'> = {
+const TIPO_VARIANT: Record<
+    Message['type'],
+    'default' | 'secondary' | 'destructive' | 'outline'
+> = {
     contato: 'default',
     bug: 'destructive',
     emprego: 'outline',
@@ -39,7 +61,13 @@ const TIPO_LABEL: Record<Message['type'], string> = {
     emprego: 'Emprego',
 };
 
-export default function Dashboard({ messagesTotal, messagesBugCount, messagesContatoCount, messagesEmpregoCount, recentMessages }: DashboardProps) {
+export default function Dashboard({
+    messagesTotal,
+    messagesBugCount,
+    messagesContatoCount,
+    messagesEmpregoCount,
+    recentMessages,
+}: DashboardProps) {
     const [search, setSearch] = useState('');
     const [filterTipo, setFilterTipo] = useState('todas');
     const [filterData, setFilterData] = useState('mes');
@@ -69,7 +97,7 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div className="grid auto-rows-min gap-4 md:grid-cols-4">
-                    <Card className='shadow-none'>
+                    <Card className="shadow-none">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-muted-foreground">
                                 Total Mensagens
@@ -77,11 +105,13 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                             <IconMailbox className="size-5 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-bold">{messagesTotal}</p>
+                            <p className="text-3xl font-bold">
+                                {messagesTotal}
+                            </p>
                         </CardContent>
                     </Card>
 
-                    <Card className='shadow-none'>
+                    <Card className="shadow-none">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-muted-foreground">
                                 Contato
@@ -89,11 +119,13 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                             <IconMail className="size-5 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-bold">{messagesContatoCount}</p>
+                            <p className="text-3xl font-bold">
+                                {messagesContatoCount}
+                            </p>
                         </CardContent>
                     </Card>
 
-                    <Card className='shadow-none'>
+                    <Card className="shadow-none">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-muted-foreground">
                                 Bug
@@ -101,11 +133,13 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                             <IconBug className="size-5 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-bold">{messagesBugCount}</p>
+                            <p className="text-3xl font-bold">
+                                {messagesBugCount}
+                            </p>
                         </CardContent>
                     </Card>
 
-                    <Card className='shadow-none'>
+                    <Card className="shadow-none">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-muted-foreground">
                                 Emprego
@@ -113,13 +147,17 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                             <IconBriefcase className="size-5 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <p className="text-3xl font-bold">{messagesEmpregoCount}</p>
+                            <p className="text-3xl font-bold">
+                                {messagesEmpregoCount}
+                            </p>
                         </CardContent>
                     </Card>
                 </div>
 
                 <div className="flex-1 space-y-3">
-                    <h2 className="text-base font-semibold">Mensagens recentes</h2>
+                    <h2 className="text-base font-semibold">
+                        Mensagens recentes
+                    </h2>
 
                     <Input
                         placeholder="Pesquisar por assunto ou remetente..."
@@ -128,7 +166,10 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                     />
 
                     <div className="flex gap-2">
-                        <Select value={filterTipo} onValueChange={setFilterTipo}>
+                        <Select
+                            value={filterTipo}
+                            onValueChange={setFilterTipo}
+                        >
                             <SelectTrigger>
                                 <SelectValue />
                             </SelectTrigger>
@@ -140,13 +181,18 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                             </SelectContent>
                         </Select>
 
-                        <Select value={filterData} onValueChange={setFilterData}>
+                        <Select
+                            value={filterData}
+                            onValueChange={setFilterData}
+                        >
                             <SelectTrigger>
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="mes">Último mês</SelectItem>
-                                <SelectItem value="semana">Última semana</SelectItem>
+                                <SelectItem value="semana">
+                                    Última semana
+                                </SelectItem>
                                 <SelectItem value="24h">Há 24 horas</SelectItem>
                             </SelectContent>
                         </Select>
@@ -166,13 +212,19 @@ export default function Dashboard({ messagesTotal, messagesBugCount, messagesCon
                             {filteredMessages.map((msg) => (
                                 <TableRow key={msg.id}>
                                     <TableCell>
-                                        <Badge variant={TIPO_VARIANT[msg.type]}>{TIPO_LABEL[msg.type]}</Badge>
+                                        <Badge variant={TIPO_VARIANT[msg.type]}>
+                                            {TIPO_LABEL[msg.type]}
+                                        </Badge>
                                     </TableCell>
                                     <TableCell>{msg.subject}</TableCell>
                                     <TableCell>{msg.sender_email}</TableCell>
                                     <TableCell>{msg.created_at}</TableCell>
                                     <TableCell>
-                                        <Button variant="ghost" size="icon" asChild>
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            asChild
+                                        >
                                             <Link href={messagesShow(msg)}>
                                                 <IconEye className="size-4" />
                                             </Link>

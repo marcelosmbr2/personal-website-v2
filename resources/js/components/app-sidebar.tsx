@@ -1,5 +1,13 @@
 import { Link } from '@inertiajs/react';
-import { IconBriefcase, IconBuilding, IconDatabase, IconFileText, IconLayoutGrid, IconNews, IconSchool } from '@/components/icons';
+import {
+    IconBriefcase,
+    IconBuilding,
+    IconDatabase,
+    IconFileText,
+    IconLayoutGrid,
+    IconNews,
+    IconSchool,
+} from '@/components/icons';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';

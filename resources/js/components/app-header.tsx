@@ -1,5 +1,11 @@
 import { Link, usePage } from '@inertiajs/react';
-import { IconBook, IconFolder, IconLayoutGrid, IconMenu2, IconSearch } from '@/components/icons';
+import {
+    IconBook,
+    IconFolder,
+    IconLayoutGrid,
+    IconMenu2,
+    IconSearch,
+} from '@/components/icons';
 import AppLogo from '@/components/app-logo';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { Breadcrumbs } from '@/components/breadcrumbs';

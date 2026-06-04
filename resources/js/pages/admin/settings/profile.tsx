@@ -14,7 +14,11 @@ import {
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+} from '@/components/ui/input-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { edit } from '@/routes/profile';
@@ -35,7 +39,8 @@ type SocialLink = {
 };
 
 export default function Profile() {
-    const { auth, socialLinks } = usePage<{ socialLinks: SocialLink[] }>().props;
+    const { auth, socialLinks } = usePage<{ socialLinks: SocialLink[] }>()
+        .props;
 
     return (
         <>
@@ -64,7 +69,10 @@ export default function Profile() {
 
                                 <div className="flex items-center gap-4">
                                     <img
-                                        src={auth.user.avatar ?? '/images/avatar.webp'}
+                                        src={
+                                            auth.user.avatar ??
+                                            '/images/avatar.webp'
+                                        }
                                         alt="Avatar"
                                         className="size-16 rounded-full object-cover"
                                     />
@@ -78,7 +86,10 @@ export default function Profile() {
                                     />
                                 </div>
 
-                                <InputError className="mt-2" message={errors.avatar} />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.avatar}
+                                />
                             </div>
 
                             <div className="grid gap-2">
@@ -94,7 +105,10 @@ export default function Profile() {
                                     placeholder="Full name"
                                 />
 
-                                <InputError className="mt-2" message={errors.name} />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.name}
+                                />
                             </div>
 
                             <div className="grid gap-2">
@@ -111,7 +125,10 @@ export default function Profile() {
                                     placeholder="Email address"
                                 />
 
-                                <InputError className="mt-2" message={errors.email} />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.email}
+                                />
                             </div>
 
                             <div className="grid gap-2">
@@ -120,7 +137,11 @@ export default function Profile() {
                                 {auth.user.cv_path && (
                                     <p className="text-sm text-muted-foreground">
                                         Arquivo atual:{' '}
-                                        <a href={auth.user.cv_path} target="_blank" className="underline">
+                                        <a
+                                            href={auth.user.cv_path}
+                                            target="_blank"
+                                            className="underline"
+                                        >
                                             ver CV
                                         </a>
                                     </p>
@@ -134,7 +155,10 @@ export default function Profile() {
                                     className="mt-1 block w-full"
                                 />
 
-                                <InputError className="mt-2" message={errors.cv} />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.cv}
+                                />
                             </div>
 
                             <div className="grid gap-2">
@@ -148,7 +172,10 @@ export default function Profile() {
                                     placeholder="e.g. Full Stack Developer"
                                 />
 
-                                <InputError className="mt-2" message={errors.role} />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.role}
+                                />
                             </div>
 
                             <div className="grid gap-2">
@@ -163,11 +190,17 @@ export default function Profile() {
                                     placeholder="A brief description about yourself"
                                 />
 
-                                <InputError className="mt-2" message={errors.bio} />
+                                <InputError
+                                    className="mt-2"
+                                    message={errors.bio}
+                                />
                             </div>
 
                             <div className="flex items-center gap-4">
-                                <Button disabled={processing} data-test="update-profile-button">
+                                <Button
+                                    disabled={processing}
+                                    data-test="update-profile-button"
+                                >
                                     Save
                                 </Button>
                             </div>
@@ -177,7 +210,11 @@ export default function Profile() {
             </div>
 
             <div className="space-y-6">
-                <Heading variant="small" title="Redes Sociais" description="Update your social media links" />
+                <Heading
+                    variant="small"
+                    title="Redes Sociais"
+                    description="Update your social media links"
+                />
 
                 <Form
                     {...SocialLinksController.update.form()}
@@ -191,7 +228,9 @@ export default function Profile() {
 
                                 return (
                                     <div key={link.id} className="grid gap-2">
-                                        <Label htmlFor={`link-${link.id}`}>{link.name}</Label>
+                                        <Label htmlFor={`link-${link.id}`}>
+                                            {link.name}
+                                        </Label>
 
                                         <InputGroup>
                                             <InputGroupInput
@@ -206,7 +245,9 @@ export default function Profile() {
                                             </InputGroupAddon>
                                         </InputGroup>
 
-                                        <InputError message={errors[`links.${link.id}`]} />
+                                        <InputError
+                                            message={errors[`links.${link.id}`]}
+                                        />
                                     </div>
                                 );
                             })}

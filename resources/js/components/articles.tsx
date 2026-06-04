@@ -28,7 +28,12 @@ export function Articles({ articles = [] }: { articles?: Article[] }) {
             {articles.map((post) => (
                 <article key={post.id} className="group">
                     {post.external_link ? (
-                        <a href={post.external_link} target="_blank" rel="noopener noreferrer" className="block">
+                        <a
+                            href={post.external_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block"
+                        >
                             <ArticleCard post={post} />
                         </a>
                     ) : (
@@ -48,7 +53,7 @@ function ArticleCard({ post }: { post: Article }) {
             {post.image_url && (
                 <div className="shrink-0">
                     <img
-                        className="w-40 h-40 object-cover rounded-lg bg-gray-100 dark:bg-neutral-800"
+                        className="h-40 w-40 rounded-lg bg-gray-100 object-cover dark:bg-neutral-800"
                         src={post.image_url}
                         alt={post.name}
                         width={160}
@@ -56,8 +61,8 @@ function ArticleCard({ post }: { post: Article }) {
                     />
                 </div>
             )}
-            <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2">
+            <div className="min-w-0 flex-1">
+                <div className="mb-2 flex items-center gap-2">
                     <time className="text-xs text-gray-500 dark:text-neutral-500">
                         {formatDate(post.published_at ?? post.created_at)}
                     </time>
@@ -65,10 +70,10 @@ function ArticleCard({ post }: { post: Article }) {
                         <IconBrandMedium className="size-3.5 text-gray-500 dark:text-neutral-500" />
                     )}
                 </div>
-                <h3 className="font-semibold text-sm text-gray-800 dark:text-neutral-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                <h3 className="line-clamp-2 text-sm font-semibold text-gray-800 transition-colors group-hover:text-blue-600 dark:text-neutral-200 dark:group-hover:text-blue-400">
                     {post.name}
                 </h3>
-                <p className="mt-1 text-sm text-gray-600 dark:text-neutral-400 line-clamp-2">
+                <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-neutral-400">
                     {post.description}
                 </p>
             </div>
