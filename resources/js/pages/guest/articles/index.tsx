@@ -6,6 +6,9 @@ import { Articles } from '@/components/articles';
 import { InputGroup, InputGroupInput, InputGroupAddon } from '@/components/ui/input-group';
 import { IconArrowLeft, IconSearch } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+type Category = 'Tecnologia' | 'Filosofia';
 
 type Article = {
     id: number;
@@ -14,21 +17,24 @@ type Article = {
     external_link: string | null;
     image_url: string | null;
     is_from_medium: boolean;
+    category: string | null;
     created_at: string;
 };
 
 export default function ArticlesIndex({ articles }: { articles: Article[] }) {
     const [search, setSearch] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState<Category>('Tecnologia');
 
     setLayoutProps({ layout: GuestLayout });
 
-    const filtered = search.trim()
-        ? articles.filter(
-              (a) =>
-                  a.name.toLowerCase().includes(search.toLowerCase()) ||
-                  a.description.toLowerCase().includes(search.toLowerCase()),
-          )
-        : articles;
+    const filtered = articles
+        .filter((a) => a.category === selectedCategory)
+        .filter(
+            (a) =>
+                !search.trim() ||
+                a.name.toLowerCase().includes(search.toLowerCase()) ||
+                a.description.toLowerCase().includes(search.toLowerCase()),
+        );
 
     return (
         <>
@@ -52,6 +58,15 @@ export default function ArticlesIndex({ articles }: { articles: Article[] }) {
                             <IconSearch className="size-4" />
                         </InputGroupAddon>
                     </InputGroup>
+                    <Select value={selectedCategory} onValueChange={(v) => setSelectedCategory(v as Category)}>
+                        <SelectTrigger className="mt-3">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Tecnologia">Tecnologia</SelectItem>
+                            <SelectItem value="Filosofia">Filosofia</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
 
                 {filtered.length === 0 ? (

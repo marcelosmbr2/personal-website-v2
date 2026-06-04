@@ -23,8 +23,19 @@ test('articles index includes is_from_medium field', function () {
     );
 });
 
+test('articles index includes category field', function () {
+    Article::factory()->create(['category' => 'Tecnologia']);
+
+    $response = $this->get('/articles');
+
+    $response->assertInertia(fn ($page) => $page
+        ->component('guest/articles/index')
+        ->where('articles.0.category', 'Tecnologia')
+    );
+});
+
 test('articles index returns all articles', function () {
-    Article::factory()->count(3)->create();
+    Article::factory()->count(3)->create(['category' => 'Tecnologia']);
 
     $response = $this->get('/articles');
 

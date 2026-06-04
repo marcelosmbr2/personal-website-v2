@@ -148,74 +148,80 @@ export default function Welcome({
     return (
         <>
             <Head title={owner.name} />
-            <div className="w-full max-w-3xl mx-auto pt-4 pb-16 px-4 sm:px-6 lg:px-8">
-                {/* Profile */}
-                <div id="home" className="flex items-center gap-x-3">
-                    <div className="shrink-0">
-                        <img
-                            className="shrink-0 size-16 rounded-full"
-                            src={owner.avatar ?? '/images/avatar.webp'}
-                            alt="Avatar"
-                        />
-                    </div>
-                    <div className="grow">
-                        <h1 className="text-lg font-medium text-gray-800 dark:text-neutral-200">
-                            {owner.name}
-                        </h1>
-                        {owner.role && (
-                            <p className="text-sm text-gray-600 dark:text-neutral-400">
-                                {owner.role}
-                            </p>
-                        )}
-                    </div>
-                    {resumes.length > 0 && (
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="sm" className="shrink-0">
-                                    <IconDownload className="size-4" />
-                                    Baixar Currículo
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="right">
-                                <SheetHeader>
-                                    <SheetTitle>Currículos Disponíveis</SheetTitle>
-                                </SheetHeader>
-                                <div className="p-2">
-                                    {resumes.map((resume) => (
-                                        <div
-                                            key={resume.id}
-                                            className="flex items-center justify-between rounded-lg border p-3"
-                                        >
-                                            <div>
-                                                <p className="text-sm font-medium">{resume.name}</p>
-                                                <p className="text-xs text-muted-foreground">
-                                                    {LANGUAGE_LABEL[resume.language] ?? resume.language}
-                                                </p>
-                                            </div>
-                                            {resume.file_path ? (
-                                                <Button variant="ghost" size="sm" asChild>
-                                                    <a
-                                                        href={resume.file_path}
-                                                        download
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        <IconDownload className="size-4" />
-                                                    </a>
-                                                </Button>
-                                            ) : resume.content ? (
-                                                <Suspense fallback={null}>
-                                                    <ResumePdfDownloadButton content={resume.content} name={resume.name} />
-                                                </Suspense>
-                                            ) : null}
-                                        </div>
-                                    ))}
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    )}
+            <div id="home" className="relative">
+                {/* Hero image: absolute, fora do flow — não empurra conteúdo */}
+                <div className="absolute inset-x-0 top-0 pointer-events-none">
+                    <img src="/images/hero/hero-transparent.png" alt="" className="w-full hidden lg:block" />
                 </div>
 
+                {/* Todo o conteúdo da página: relative, pintado após a imagem */}
+                <div className="relative w-full max-w-3xl mx-auto pt-4 pb-16 px-4 sm:px-6 lg:px-8">
+                    {/* Profile */}
+                    <div className="flex items-center gap-x-3">
+                        <div className="shrink-0">
+                            <img
+                                className="shrink-0 size-16 rounded-full"
+                                src={owner.avatar ?? '/images/avatar.webp'}
+                                alt="Avatar"
+                            />
+                        </div>
+                        <div className="grow">
+                            <h1 className="text-lg font-medium text-gray-800 dark:text-neutral-200">
+                                {owner.name}
+                            </h1>
+                            {owner.role && (
+                                <p className="text-sm text-gray-600 dark:text-neutral-400">
+                                    {owner.role}
+                                </p>
+                            )}
+                        </div>
+                        {resumes.length > 0 && (
+                            <Sheet>
+                                <SheetTrigger asChild>
+                                    <Button variant="ghost" size="sm" className="shrink-0">
+                                        <IconDownload className="size-4" />
+                                        Baixar Currículo
+                                    </Button>
+                                </SheetTrigger>
+                                <SheetContent side="right">
+                                    <SheetHeader>
+                                        <SheetTitle>Currículos Disponíveis</SheetTitle>
+                                    </SheetHeader>
+                                    <div className="p-2">
+                                        {resumes.map((resume) => (
+                                            <div
+                                                key={resume.id}
+                                                className="flex items-center justify-between rounded-lg border p-3"
+                                            >
+                                                <div>
+                                                    <p className="text-sm font-medium">{resume.name}</p>
+                                                    <p className="text-xs text-muted-foreground">
+                                                        {LANGUAGE_LABEL[resume.language] ?? resume.language}
+                                                    </p>
+                                                </div>
+                                                {resume.file_path ? (
+                                                    <Button variant="ghost" size="sm" asChild>
+                                                        <a
+                                                            href={resume.file_path}
+                                                            download
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            <IconDownload className="size-4" />
+                                                        </a>
+                                                    </Button>
+                                                ) : resume.content ? (
+                                                    <Suspense fallback={null}>
+                                                        <ResumePdfDownloadButton content={resume.content} name={resume.name} />
+                                                    </Suspense>
+                                                ) : null}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        )}
+                    </div>
                 {/* About */}
                 <div className="mt-8">
                     {owner.bio?.split('\n\n').map((paragraph, i) => (
@@ -510,6 +516,7 @@ export default function Welcome({
                     ) : (
                         <Articles articles={articles} />
                     )}
+                </div>
                 </div>
             </div>
         </>
