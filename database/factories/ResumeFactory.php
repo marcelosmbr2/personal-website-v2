@@ -16,7 +16,6 @@ class ResumeFactory extends Factory
             'name' => fake()->sentence(3),
             'language' => fake()->randomElement(['pt-BR', 'en', 'es']),
             'status' => fake()->randomElement(['draft', 'active', 'archived']),
-            'published' => fake()->boolean(),
             'file_path' => null,
         ];
     }

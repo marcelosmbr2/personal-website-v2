@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('language');
             $table->string('status')->default('draft');
-            $table->boolean('published')->default(false);
             $table->string('file_path')->nullable();
             $table->timestamps();
         });

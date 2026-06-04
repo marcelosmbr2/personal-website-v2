@@ -24,9 +24,18 @@ class Experience extends Model
     protected function icon(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => str_starts_with($value, 'public/')
-                ? asset(substr($value, 7))
-                : $value,
+            get: function (string $value) {
+                if (str_starts_with($value, 'public/')) {
+                    return asset(substr($value, 7));
+                }
+                if (str_starts_with($value, 'devicon:')) {
+                    $name = substr($value, 8);
+
+                    return "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/{$name}/{$name}-original.svg";
+                }
+
+                return $value;
+            },
         );
     }
 }

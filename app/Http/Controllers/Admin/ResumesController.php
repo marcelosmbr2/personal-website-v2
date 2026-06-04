@@ -29,7 +29,6 @@ class ResumesController extends Controller
     public function store(StoreResumeRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['published'] = $request->boolean('published');
 
         Resume::create($data);
 
@@ -49,11 +48,9 @@ class ResumesController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'language' => ['required', 'string', 'in:pt-BR,en,es'],
             'status' => ['required', 'string', 'in:draft,active,archived'],
-            'published' => ['boolean'],
             'file' => ['required', 'file', 'mimes:pdf', 'max:10240'],
         ]);
 
-        $data['published'] = $request->boolean('published');
         $data['file_path'] = $request->file('file')->store('resumes', 'public');
         unset($data['file']);
 
@@ -62,6 +59,13 @@ class ResumesController extends Controller
         Inertia::flash('toast', ['type' => 'success', 'message' => 'Currículo importado.']);
 
         return to_route('admin.resumes.index');
+    }
+
+    public function show(Resume $resume): Response
+    {
+        return Inertia::render('admin/resumes/show', [
+            'resume' => $resume,
+        ]);
     }
 
     public function edit(Resume $resume): Response
@@ -74,7 +78,6 @@ class ResumesController extends Controller
     public function update(UpdateResumeRequest $request, Resume $resume): RedirectResponse
     {
         $data = $request->validated();
-        $data['published'] = $request->boolean('published');
 
         $resume->update($data);
 

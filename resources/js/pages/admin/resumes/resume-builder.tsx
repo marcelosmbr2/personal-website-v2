@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { PDFViewer } from '@react-pdf/renderer';
 import { IconChevronDown, IconChevronUp, IconPlus, IconTrash } from '@tabler/icons-react';
 import { router } from '@inertiajs/react';
+import { toast } from 'sonner';
 import type { ResumeContent, ResumeSkill, ResumeExperience, ResumeEducation, ResumeCourse, ResumePublication, ResumeProject } from '@/components/resume-pdf';
 import { ResumePDF } from '@/components/resume-pdf';
 import { Button } from '@/components/ui/button';
@@ -109,25 +110,23 @@ const DEFAULT_CONTENT: ResumeContent = {
             description:
                 'Formação destinada ao exercício da docência em escolas públicas (estaduais, municipais e federais) e particulares. O currículo abrange a área tecnológica em computação acompanhada dos saberes pedagógicos.',
         },
-    ],
-    courses: [
         {
-            name: 'Pós Graduação em Engenharia e Arquitetura de Software',
-            platform: 'UCPel',
+            degree: 'Pós Graduação em Engenharia e Arquitetura de Software',
+            institution: 'UCPel',
             period: '05/2026 – Presente',
-            link: '',
+            location: '',
             description:
                 'A pós-graduação em Engenharia e Arquitetura de Software é um curso EAD voltado à formação de profissionais capazes de projetar, desenvolver e estruturar sistemas modernos, escaláveis e alinhados às boas práticas da engenharia de software.',
-            tags: '',
         },
+    ],
+    courses: [
         {
             name: 'Engenharia de Agentes de IA',
             platform: 'Alura',
             period: '05/2026 – presente',
-            link: '',
-            description:
-                'Essa formação prepara profissionais para desenvolver agentes de IA utilizando Python, LangChain, APIs de LLMs, RAG, machine learning, MLOps e cloud computing.',
-            tags: '',
+            link: 'https://www.alura.com.br/carreiras/engenharia-de-ia',
+            description: '',
+            tags: 'Python, RAG, LangChain, LangGraph, Machine Learning, Deep Learning, Fine Tuning, MLOps, AIOps',
         },
         {
             name: 'Carreira Desenvolvimento Back-End PHP',
@@ -141,7 +140,7 @@ const DEFAULT_CONTENT: ResumeContent = {
             name: 'Formação Engenharia de software',
             platform: 'Alura',
             period: '',
-            link: '',
+            link: 'https://cursos.alura.com.br/degree/certificate/5b05f0ae-36c9-4898-af7c-4e4fed60a6f3?lang=pt_BR',
             description: '',
             tags: 'Gestão de Requisitos, Arquitetura e Design de Sistemas, Padrões de Projeto, Banco de Dados, Testes de Software, Gestão de Projetos, Infraestrutura e Deploy',
         },
@@ -149,7 +148,7 @@ const DEFAULT_CONTENT: ResumeContent = {
             name: 'Formação DevOps',
             platform: 'Alura',
             period: '',
-            link: '',
+            link: 'https://cursos.alura.com.br/degree/certificate/dcf9e0e6-17ba-4e11-8a13-e5fe40bf7b19?lang=pt_BR',
             description: '',
             tags: 'Virtualização e Provisionamento, Containerização, Integração e Entrega Contínua (CI/CD), Monitoramento',
         },
@@ -163,7 +162,6 @@ interface Meta {
     name: string;
     language: string;
     status: string;
-    published: boolean;
 }
 
 interface Props {
@@ -201,7 +199,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 export default function ResumeBuilder({ initialContent, initialMeta, submitUrl, submitMethod }: Props) {
     const [meta, setMeta] = useState<Meta>(
-        initialMeta ?? { name: '', language: 'pt-BR', status: 'draft', published: false },
+        initialMeta ?? { name: '', language: 'pt-BR', status: 'draft' },
     );
     const [content, setContent] = useState<ResumeContent>(initialContent ?? DEFAULT_CONTENT);
     const [saving, setSaving] = useState(false);
@@ -304,10 +302,17 @@ export default function ResumeBuilder({ initialContent, initialMeta, submitUrl, 
     function handleSave() {
         setSaving(true);
         const payload = { ...meta, content } as unknown as Parameters<typeof router.put>[1];
+        const options = {
+            preserveState: true,
+            onFinish: () => setSaving(false),
+            onError: (errors: Record<string, string>) => {
+                toast.error(Object.values(errors)[0] ?? 'Erro ao salvar.');
+            },
+        };
         if (submitMethod === 'put') {
-            router.put(submitUrl, payload, { onFinish: () => setSaving(false) });
+            router.put(submitUrl, payload, options);
         } else {
-            router.post(submitUrl, payload, { onFinish: () => setSaving(false) });
+            router.post(submitUrl, payload, options);
         }
     }
 
@@ -347,14 +352,6 @@ export default function ResumeBuilder({ initialContent, initialMeta, submitUrl, 
                                 </SelectContent>
                             </Select>
                         </Field>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Checkbox
-                            id="published"
-                            checked={meta.published}
-                            onCheckedChange={(v) => setMeta((m) => ({ ...m, published: !!v }))}
-                        />
-                        <Label htmlFor="published" className="text-xs">Publicado</Label>
                     </div>
                 </SectionCard>
 

@@ -8,7 +8,6 @@ interface Resume {
     name: string;
     language: string;
     status: string;
-    published: boolean;
     content: ResumeContent | null;
 }
 
@@ -35,7 +34,6 @@ export default function EditResume({ resume }: Props) {
                     name: resume.name,
                     language: resume.language,
                     status: resume.status,
-                    published: resume.published,
                 }}
                 submitUrl={update.url({ resume: resume.id })}
                 submitMethod="put"

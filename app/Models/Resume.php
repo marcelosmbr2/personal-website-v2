@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['name', 'language', 'status', 'published', 'file_path', 'content'])]
+#[Fillable(['name', 'language', 'status', 'file_path', 'content'])]
 class Resume extends Model
 {
     /** @use HasFactory<ResumeFactory> */
@@ -17,7 +17,6 @@ class Resume extends Model
     protected function casts(): array
     {
         return [
-            'published' => 'boolean',
             'content' => 'array',
         ];
     }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Symfony\Component\HttpFoundation\Response;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -15,6 +17,15 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+
+    public function handle(Request $request, Closure $next): Response
+    {
+        if ($request->is('admin/*')) {
+            config(['inertia.ssr.enabled' => false]);
+        }
+
+        return parent::handle($request, $next);
+    }
 
     /**
      * Determines the current asset version.

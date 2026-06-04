@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Head, Link } from '@inertiajs/react';
-import { IconCheck, IconPencil, IconPlus, IconTrash, IconUpload, IconX } from '@tabler/icons-react';
+import { IconEye, IconPencil, IconPlus, IconTrash, IconUpload } from '@tabler/icons-react';
 import ResumesController from '@/actions/App/Http/Controllers/Admin/ResumesController';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,14 +15,13 @@ import {
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { create as resumesCreate, edit as resumesEdit, importMethod as resumesImport, index as resumesIndex } from '@/routes/admin/resumes';
+import { create as resumesCreate, edit as resumesEdit, importMethod as resumesImport, index as resumesIndex, show as resumesShow } from '@/routes/admin/resumes';
 
 interface Resume {
     id: number;
     name: string;
     language: string;
     status: string;
-    published: boolean;
     file_path: string | null;
     updated_at: string;
 }
@@ -54,17 +53,11 @@ export default function Resumes({ resumes }: Props) {
     const [search, setSearch] = useState('');
     const [filterLanguage, setFilterLanguage] = useState('todas');
     const [filterStatus, setFilterStatus] = useState('todos');
-    const [filterPublished, setFilterPublished] = useState('todos');
-
     const filteredResumes = resumes.filter((resume) => {
         const matchesSearch = resume.name.toLowerCase().includes(search.toLowerCase());
         const matchesLanguage = filterLanguage === 'todas' || resume.language === filterLanguage;
         const matchesStatus = filterStatus === 'todos' || resume.status === filterStatus;
-        const matchesPublished =
-            filterPublished === 'todos' ||
-            (filterPublished === 'sim' && resume.published) ||
-            (filterPublished === 'nao' && !resume.published);
-        return matchesSearch && matchesLanguage && matchesStatus && matchesPublished;
+        return matchesSearch && matchesLanguage && matchesStatus;
     });
 
     return (
@@ -121,16 +114,6 @@ export default function Resumes({ resumes }: Props) {
                         </SelectContent>
                     </Select>
 
-                    <Select value={filterPublished} onValueChange={setFilterPublished}>
-                        <SelectTrigger>
-                            <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="todos">Publicação: todos</SelectItem>
-                            <SelectItem value="sim">Publicado</SelectItem>
-                            <SelectItem value="nao">Não publicado</SelectItem>
-                        </SelectContent>
-                    </Select>
                 </div>
 
                 <Table>
@@ -139,9 +122,8 @@ export default function Resumes({ resumes }: Props) {
                             <TableHead>Nome</TableHead>
                             <TableHead>Idioma</TableHead>
                             <TableHead>Status</TableHead>
-                            <TableHead>Publicado</TableHead>
                             <TableHead>Atualizado em</TableHead>
-                            <TableHead className="w-20">Ações</TableHead>
+                            <TableHead className="w-28">Ações</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -158,18 +140,16 @@ export default function Resumes({ resumes }: Props) {
                                         {STATUS_LABEL[resume.status] ?? resume.status}
                                     </span>
                                 </TableCell>
-                                <TableCell>
-                                    {resume.published ? (
-                                        <IconCheck className="size-4 text-green-600" />
-                                    ) : (
-                                        <IconX className="size-4 text-muted-foreground" />
-                                    )}
-                                </TableCell>
                                 <TableCell className="text-muted-foreground text-sm">
                                     {new Date(resume.updated_at).toLocaleDateString('pt-BR')}
                                 </TableCell>
                                 <TableCell>
                                     <div className="flex gap-1">
+                                        <Button variant="ghost" size="icon" asChild>
+                                            <a href={resumesShow({ resume: resume.id })} target="_blank" rel="noopener noreferrer">
+                                                <IconEye className="size-4" />
+                                            </a>
+                                        </Button>
                                         <Button variant="ghost" size="icon" asChild>
                                             <Link href={resumesEdit({ resume: resume.id })}>
                                                 <IconPencil className="size-4" />

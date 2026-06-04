@@ -91,7 +91,7 @@ export interface ResumeContent {
 const s = StyleSheet.create({
     page: {
         fontFamily: 'Alegreya',
-        fontSize: 10.5,
+        fontSize: 11,
         paddingTop: 40,
         paddingBottom: 40,
         paddingLeft: 40,
@@ -102,11 +102,11 @@ const s = StyleSheet.create({
     // Header
     headerName: { fontSize: 22, fontWeight: 700, marginBottom: 8.78 },
     headerTitle: { fontSize: 17, fontWeight: 400, marginLeft: 8, color: '#333' },
-    headerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
-    headerMeta: { flexDirection: 'row', flexWrap: 'wrap', gap: 14, marginBottom: 2, color: '#333', fontSize: 10.5, fontWeight: 400, lineHeight: 1.333 },
+    headerRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
+    headerMeta: { flexDirection: 'row', flexWrap: 'wrap', columnGap: 14, rowGap: 5, marginBottom: 5, color: '#333', fontSize: 11, fontWeight: 400, lineHeight: 1.333 },
     headerMetaItem: { flexDirection: 'row', alignItems: 'center', gap: 3 },
     // Section
-    section: { marginTop: 14 },
+    section: { marginTop: 10 },
     sectionTitle: {
         fontSize: 14,
         fontWeight: 700,
@@ -125,8 +125,8 @@ const s = StyleSheet.create({
     entryRight: { textAlign: 'right', color: '#333' },
     entryCompany: { fontStyle: 'italic', color: '#333', marginBottom: 2 },
     entryDescription: { color: '#333', marginBottom: 3 },
-    entryTags: { color: '#555', fontSize: 9.5, marginBottom: 6 },
-    entryItem: { marginBottom: 14 },
+    entryTags: { color: '#555', fontSize: 10, marginBottom: 6 },
+    entryItem: { marginBottom: 8 },
 });
 
 function ContactIcon({ icon }: { icon: string }) {
@@ -191,7 +191,7 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                         </View>
                     )}
                 </View>
-                <View style={[s.headerMeta, { marginBottom: 8 }]}>
+                <View style={[s.headerMeta, { marginBottom: 0 }]}>
                     {!!header.linkedin && (
                         <View style={s.headerMetaItem}>
                             <ContactIcon icon={ICONS.linkedin} />
@@ -302,7 +302,7 @@ export function ResumePDF({ data }: { data: ResumeContent }) {
                                     {!!course.link && (
                                         <Link src={course.link}>
                                             <Svg width={9} height={9} viewBox="0 0 24 24">
-                                                <Path d={ICONS.link} fill="#0066cc" />
+                                                <Path d={ICONS.link} fill="#777BB4" />
                                             </Svg>
                                         </Link>
                                     )}

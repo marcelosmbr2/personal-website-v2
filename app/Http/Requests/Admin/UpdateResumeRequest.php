@@ -18,7 +18,6 @@ class UpdateResumeRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'language' => ['required', 'string', 'in:pt-BR,en,es'],
             'status' => ['required', 'string', 'in:draft,active,archived'],
-            'published' => ['boolean'],
             'content' => ['nullable', 'array'],
         ];
     }

@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import { lazy, Suspense } from 'react';
 import {
     IconBrandGithub,
     IconBrandLinkedin,
@@ -9,6 +10,13 @@ import {
     type TablerIcon,
 } from '@/components/icons';
 import { Articles } from '@/components/articles';
+import type { ResumeContent } from '@/components/resume-pdf';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+
+const ResumePdfDownloadButton = lazy(() =>
+    import('@/components/resume-pdf-download-button').then((m) => ({ default: m.ResumePdfDownloadButton })),
+);
 
 type Owner = {
     name: string;
@@ -70,6 +78,20 @@ type Article = {
     created_at: string;
 };
 
+type Resume = {
+    id: number;
+    name: string;
+    language: string;
+    file_path: string | null;
+    content: ResumeContent | null;
+};
+
+const LANGUAGE_LABEL: Record<string, string> = {
+    'pt-BR': 'Português',
+    en: 'English',
+    es: 'Español',
+};
+
 const socialIconMap: Record<string, TablerIcon> = {
     IconMail,
     IconBrandGithub,
@@ -112,6 +134,7 @@ export default function Welcome({
     projects,
     courses,
     articles,
+    resumes,
 }: {
     owner: Owner;
     socialLinks: SocialLink[];
@@ -120,6 +143,7 @@ export default function Welcome({
     projects: Project[];
     courses: Course[];
     articles: Article[];
+    resumes: Resume[];
 }) {
     return (
         <>
@@ -144,6 +168,52 @@ export default function Welcome({
                             </p>
                         )}
                     </div>
+                    {resumes.length > 0 && (
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant="ghost" size="sm" className="shrink-0">
+                                    <IconDownload className="size-4" />
+                                    Baixar Currículo
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="right">
+                                <SheetHeader>
+                                    <SheetTitle>Currículos Disponíveis</SheetTitle>
+                                </SheetHeader>
+                                <div className="p-2">
+                                    {resumes.map((resume) => (
+                                        <div
+                                            key={resume.id}
+                                            className="flex items-center justify-between rounded-lg border p-3"
+                                        >
+                                            <div>
+                                                <p className="text-sm font-medium">{resume.name}</p>
+                                                <p className="text-xs text-muted-foreground">
+                                                    {LANGUAGE_LABEL[resume.language] ?? resume.language}
+                                                </p>
+                                            </div>
+                                            {resume.file_path ? (
+                                                <Button variant="ghost" size="sm" asChild>
+                                                    <a
+                                                        href={resume.file_path}
+                                                        download
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <IconDownload className="size-4" />
+                                                    </a>
+                                                </Button>
+                                            ) : resume.content ? (
+                                                <Suspense fallback={null}>
+                                                    <ResumePdfDownloadButton content={resume.content} name={resume.name} />
+                                                </Suspense>
+                                            ) : null}
+                                        </div>
+                                    ))}
+                                </div>
+                            </SheetContent>
+                        </Sheet>
+                    )}
                 </div>
 
                 {/* About */}

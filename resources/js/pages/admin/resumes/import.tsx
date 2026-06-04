@@ -1,17 +1,13 @@
-import { useState } from 'react';
 import { Form, Head } from '@inertiajs/react';
 import ResumesController from '@/actions/App/Http/Controllers/Admin/ResumesController';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { importMethod, index as resumesIndex } from '@/routes/admin/resumes';
 
 export default function ImportResume() {
-    const [published, setPublished] = useState(false);
-
     return (
         <>
             <Head title="Importar Currículo" />
@@ -78,16 +74,6 @@ export default function ImportResume() {
                                     required
                                 />
                                 <InputError message={errors.file} />
-                            </div>
-
-                            <input type="hidden" name="published" value={published ? '1' : '0'} />
-                            <div className="flex items-center gap-2">
-                                <Checkbox
-                                    id="published"
-                                    checked={published}
-                                    onCheckedChange={(v) => setPublished(!!v)}
-                                />
-                                <Label htmlFor="published">Publicado</Label>
                             </div>
 
                             <Button type="submit" disabled={processing}>

@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('experiences', Admin\ExperiencesController::class)
             ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
         Route::resource('resumes', Admin\ResumesController::class)
-            ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+            ->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
         Route::get('resumes/import', [Admin\ResumesController::class, 'showImport'])->name('resumes.import');
         Route::post('resumes/import', [Admin\ResumesController::class, 'storeImport'])->name('resumes.storeImport');
         Route::resource('messages', Admin\MessagesController::class)

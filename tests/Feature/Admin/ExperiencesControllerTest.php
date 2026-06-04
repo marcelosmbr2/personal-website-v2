@@ -111,6 +111,17 @@ test('can update an experience icon to devicon', function () {
     ]);
 });
 
+test('devicon icon accessor returns cdn url', function () {
+    $experience = Experience::factory()->create([
+        'icon' => 'devicon:laravel',
+        'icon_type' => 'devicon',
+    ]);
+
+    expect($experience->icon)->toBe(
+        'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg'
+    );
+});
+
 test('can delete an experience', function () {
     $experience = Experience::factory()->create();
 

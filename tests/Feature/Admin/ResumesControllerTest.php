@@ -33,7 +33,6 @@ test('authenticated users can create a resume with content', function () {
             'name' => 'Currículo PT-BR 2025',
             'language' => 'pt-BR',
             'status' => 'draft',
-            'published' => false,
             'content' => [
                 'header' => ['name' => 'Marcelo', 'title' => 'Dev', 'location' => '', 'email' => '', 'phone' => '', 'linkedin' => '', 'website' => '', 'github' => ''],
                 'summary' => 'Desenvolvedor full-stack.',

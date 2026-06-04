@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Course;
 use App\Models\Experience;
 use App\Models\Project;
+use App\Models\Resume;
 use App\Models\Skill;
 use App\Models\SocialLink;
 use App\Models\User;
@@ -27,6 +28,7 @@ class WelcomeController extends Controller
             'projects' => Project::where('is_favorite', true)->limit(3)->get(),
             'courses' => Course::orderBy('order')->get(),
             'articles' => Article::where('is_favorite', true)->limit(3)->get(),
+            'resumes' => Resume::where('status', 'active')->select(['id', 'name', 'language', 'file_path', 'content'])->get(),
         ]);
     }
 }
