@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->json('technologies')->nullable();
             $table->string('link')->nullable();
-            $table->string('status')->default('Completed');
+            $table->string('status')->default('in progress');
             $table->boolean('is_favorite')->default(false);
             $table->unsignedSmallInteger('order')->default(0);
             $table->timestamps();

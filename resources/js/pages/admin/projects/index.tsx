@@ -39,15 +39,15 @@ interface Props {
 }
 
 const STATUS_VARIANT: Record<string, 'default' | 'secondary' | 'outline'> = {
-    Completed: 'default',
-    'In Progress': 'secondary',
-    Planned: 'outline',
+    completed: 'default',
+    'in progress': 'secondary',
+    planned: 'outline',
 };
 
 const STATUS_LABEL: Record<string, string> = {
-    Completed: 'Concluído',
-    'In Progress': 'Em Andamento',
-    Planned: 'Planejado',
+    completed: 'Concluído',
+    'in progress': 'Em Andamento',
+    planned: 'Planejado',
 };
 
 export default function Projects({ projects }: Props) {
@@ -104,9 +104,9 @@ export default function Projects({ projects }: Props) {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="todos">Todos os status</SelectItem>
-                            <SelectItem value="Completed">Concluído</SelectItem>
-                            <SelectItem value="In Progress">Em Andamento</SelectItem>
-                            <SelectItem value="Planned">Planejado</SelectItem>
+                            <SelectItem value="completed">Concluído</SelectItem>
+                            <SelectItem value="in progress">Em Andamento</SelectItem>
+                            <SelectItem value="planned">Planejado</SelectItem>
                         </SelectContent>
                     </Select>
 
@@ -240,15 +240,15 @@ export default function Projects({ projects }: Props) {
                                         <Label htmlFor="status">Status</Label>
                                         <Select
                                             name="status"
-                                            defaultValue={editingProject?.status ?? 'Completed'}
+                                            defaultValue={editingProject?.status ?? 'in progress'}
                                         >
                                             <SelectTrigger id="status" className="w-full">
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="Completed">Concluído</SelectItem>
-                                                <SelectItem value="In Progress">Em Andamento</SelectItem>
-                                                <SelectItem value="Planned">Planejado</SelectItem>
+                                                <SelectItem value="completed">Concluído</SelectItem>
+                                                <SelectItem value="in progress">Em Andamento</SelectItem>
+                                                <SelectItem value="planned">Planejado</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <InputError message={errors.status} />
