@@ -17,7 +17,7 @@ class AdminUserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => env('ADMIN_PASSWORD'),
                 'avatar' => '/images/avatar.webp',
-                'role' => 'Desenvolvedor PHP, Full Stack',
+                'role' => 'Desenvolvedor PHP Full Stack',
                 'bio' => 'Desenvolvedor full-stack especializado em PHP/Laravel e React/TypeScript. Tenho formação em Licenciatura em Computação e hoje também atuo como professor técnico no Senac RS.',
             ]
         );
