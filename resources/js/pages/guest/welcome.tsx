@@ -352,7 +352,7 @@ export default function Welcome({
                                             <div className="flex items-center gap-2 mb-2">
                                                 <span className="text-xs text-gray-500 dark:text-neutral-500">
                                                     {project.status ===
-                                                    'Completed'
+                                                    'completed'
                                                         ? 'Concluído'
                                                         : 'Em andamento'}
                                                 </span>
@@ -479,7 +479,7 @@ export default function Welcome({
                                                 •
                                             </span>
                                             <span className="text-xs text-gray-500 dark:text-neutral-500">
-                                                {course.status === 'Completed'
+                                                {course.status === 'completed'
                                                     ? 'Concluído'
                                                     : 'Em andamento'}
                                             </span>

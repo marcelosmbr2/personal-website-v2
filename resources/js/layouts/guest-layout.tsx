@@ -13,7 +13,7 @@ export default function GuestLayout({ children }: PropsWithChildren) {
                             © 2025 Marcelosmbr
                         </p>
                         <span className="text-xs text-gray-600 dark:text-neutral-400">
-                            Laravel 13 + Inertia.js
+                            Laravel 13 + Inertia.js + React
                         </span>
                     </div>
                 </div>
