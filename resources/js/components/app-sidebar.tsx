@@ -2,7 +2,6 @@ import { Link } from '@inertiajs/react';
 import {
     IconBriefcase,
     IconBuilding,
-    IconDatabase,
     IconFileText,
     IconLayoutGrid,
     IconNews,
@@ -23,7 +22,6 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as articlesIndex } from '@/routes/admin/articles';
-import { index as backupIndex } from '@/routes/admin/backup';
 import { index as coursesIndex } from '@/routes/admin/courses';
 import { index as experiencesIndex } from '@/routes/admin/experiences';
 import { index as projectsIndex } from '@/routes/admin/projects';
@@ -60,11 +58,6 @@ const mainNavItems: NavItem[] = [
         title: 'Currículos',
         href: resumesIndex(),
         icon: IconFileText,
-    },
-    {
-        title: 'Backup',
-        href: backupIndex(),
-        icon: IconDatabase,
     },
 ];
 
