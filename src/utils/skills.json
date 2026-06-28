@@ -1,162 +1,134 @@
-{
-	"frontend": [
-		{
-			"id": 1,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-			"name": "HTML5",
-			"preferred": false
-		},
-		{
-			"id": 2,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-			"name": "CSS3",
-			"preferred": false
-		},
-		{
-			"id": 3,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-			"name": "JavaScript",
-			"preferred": false
-		},
-		{
-			"id": 4,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-			"name": "TypeScript",
-			"preferred": false
-		},
-		{
-			"id": 5,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-			"name": "React",
-			"preferred": true
-		},
-		{
-			"id": 6,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-			"name": "Next.js",
-			"preferred": true
-		}
-	],
-	"backend": [
-		{
-			"id": 7,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
-			"name": "PHP",
-			"preferred": true
-		},
-		{
-			"id": 8,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
-			"name": "Laravel",
-			"preferred": true
-		},
-		{
-			"id": 9,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/symfony/symfony-original.svg",
-			"name": "Symfony",
-			"preferred": true
-		},
-		{
-			"id": 10,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
-			"name": "Node.js",
-			"preferred": false
-		},
-		{
-			"id": 11,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-			"name": "MySQL",
-			"preferred": true
-		},
-		{
-			"id": 12,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
-			"name": "PostgreSQL",
-			"preferred": true
-		},
-		{
-			"id": 13,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
-			"name": "MongoDB",
-			"preferred": false
-		},
-		{
-			"id": 14,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
-			"name": "Redis",
-			"preferred": false
-		},
-		{
-			"id": 15,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rabbitmq/rabbitmq-original.svg",
-			"name": "RabbitMQ",
-			"preferred": false
-		}
-	],
-	"cms": [
-		{
-			"id": 16,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg",
-			"name": "WordPress",
-			"preferred": false
-		}
-	],
-	"devops": [
-		{
-			"id": 17,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
-			"name": "Git",
-			"preferred": false
-		},
-		{
-			"id": 18,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-			"name": "GitHub",
-			"preferred": false
-		},
-		{
-			"id": 19,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg",
-			"name": "GitHub Actions",
-			"preferred": false
-		},
-		{
-			"id": 20,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
-			"name": "Docker",
-			"preferred": false
-		},
-		{
-			"id": 21,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-			"name": "AWS",
-			"preferred": false
-		}
-	],
-	"soft": [
-		{
-			"id": 22,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/communication/communication-original.svg",
-			"name": "Comunicação",
-			"preferred": false
-		},
-		{
-			"id": 23,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/teamwork/teamwork-original.svg",
-			"name": "Trabalho em Equipe",
-			"preferred": false
-		},
-		{
-			"id": 24,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/problem-solving/problem-solving-original.svg",
-			"name": "Solução de Problemas",
-			"preferred": false
-		},
-		{
-			"id": 25,
-			"devIcon": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/leadership/leadership-original.svg",
-			"name": "Proatividade",
-			"preferred": false
-		}
-	]
-}
+[
+  {
+    "name": "HTML5",
+    "category": "frontend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+    "order": 1
+  },
+  {
+    "name": "CSS3",
+    "category": "frontend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+    "order": 2
+  },
+  {
+    "name": "JavaScript",
+    "category": "frontend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+    "order": 3
+  },
+  {
+    "name": "TypeScript",
+    "category": "frontend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    "order": 4
+  },
+  {
+    "name": "React",
+    "category": "frontend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    "order": 5
+  },
+  {
+    "name": "Next.js",
+    "category": "frontend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+    "order": 6
+  },
+  {
+    "name": "PHP",
+    "category": "backend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+    "order": 1
+  },
+  {
+    "name": "Laravel",
+    "category": "backend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
+    "order": 2
+  },
+  {
+    "name": "Symfony",
+    "category": "backend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/symfony/symfony-original.svg",
+    "order": 3
+  },
+  {
+    "name": "Node.js",
+    "category": "backend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+    "order": 4
+  },
+  {
+    "name": "MySQL",
+    "category": "backend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+    "order": 5
+  },
+  {
+    "name": "PostgreSQL",
+    "category": "backend",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+    "order": 6
+  },
+  {
+    "name": "WordPress",
+    "category": "cms",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/wordpress/wordpress-original.svg",
+    "order": 1
+  },
+  {
+    "name": "Git",
+    "category": "devops",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+    "order": 1
+  },
+  {
+    "name": "GitHub",
+    "category": "devops",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+    "order": 2
+  },
+  {
+    "name": "GitHub Actions",
+    "category": "devops",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg",
+    "order": 3
+  },
+  {
+    "name": "Docker",
+    "category": "devops",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+    "order": 4
+  },
+  {
+    "name": "AWS",
+    "category": "devops",
+    "icon": "//cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+    "order": 5
+  },
+  {
+    "name": "Comunicação",
+    "category": "soft",
+    "icon": "",
+    "order": 1
+  },
+  {
+    "name": "Trabalho em Equipe",
+    "category": "soft",
+    "icon": "",
+    "order": 2
+  },
+  {
+    "name": "Solução de Problemas",
+    "category": "soft",
+    "icon": "",
+    "order": 3
+  },
+  {
+    "name": "Proatividade",
+    "category": "soft",
+    "icon": "",
+    "order": 4
+  }
+]

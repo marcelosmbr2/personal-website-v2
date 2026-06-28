@@ -1,0 +1,28 @@
+{
+    "avatar": "/images/avatar.webp",
+    "name": "Marcelo Moreira",
+    "role": "Desenvolvedor PHP Full Stack",
+    "bio": "Desenvolvedor full-stack especializado em PHP/Laravel e React/TypeScript. Tenho formação em Licenciatura em Computação e hoje também atuo como professor técnico no Senac RS.",
+    "socialLinks": [
+        {
+            "icon": "IconMail",
+            "name": "Email",
+            "link": "mailto:marcelosmbr.contato@gmail.com"
+        },
+        {
+            "icon": "IconBrandGithub",
+            "name": "Github",
+            "link": "https://github.com/marcelosmbr2"
+        },
+        {
+            "icon": "IconBrandLinkedin",
+            "name": "Linkedin",
+            "link": "https://linkedin.com/in/marcelosmbr"
+        },
+        {
+            "icon": "IconBrandWhatsapp",
+            "name": "Whatsapp",
+            "link": "https://wa.me/5553991082653"
+        }
+    ]
+}

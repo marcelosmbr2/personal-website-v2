@@ -1,66 +1,136 @@
 [
-	{
-		"name": "Portfolio",
-		"image": "/images/projects/nextjs.webp",
-		"description": "Portfolio pessoal construído com Next.js 15 e DatoCMS.",
-		"technologies": "Next.js,DatoCMS",
-		"link": "https://github.com/Marcelosmbr2/personal-website",
-		"status": "Completed"
-	},
-	{
-		"name": "Symfony Framework",
-		"image": "/images/projects/symfony.webp",
-		"description": "Estudo dos fundamentos e funcionalidades do framework Symfony.",
-		"technologies": "PHP,Symfony",
-		"link": "https://github.com/marcelosmbr2/symfony-framework",
-		"status": "in-progress"
-	},
-	{
-		"name": "Laravel MCP",
-		"image": "/images/projects/laravel.webp",
-		"description": "Estudo de servidor MCP com Laravel.",
-		"technologies": "PHP,Laravel,MCP",
-		"link": "https://github.com/marcelosmbr2/laravel-mcp",
-		"status": "Completed"
-	},
-	{
-		"name": "Infraestrutura como Código",
-		"image": "/images/projects/terraform.webp",
-		"description": "Implantação de uma aplicação Laravel na AWS utilizando Terraform e Ansible",
-		"technologies": "AWS,EC2,Terraform,Ansible,Laravel",
-		"link": "https://github.com/marcelosmbr2/iac-terraform-ansible.git",
-		"status": "Completed"
-	},
-	{
-		"name": "Laravel Queues",
-		"image": "/images/projects/laravel.webp",
-		"description": "Estudo de filas, jobs assíncronos e monitoramento com Horizon.",
-		"technologies": "PHP,Laravel,Horizon,Queues,Redis,Mailhog,Docker",
-		"link": "https://github.com/Marcelosmbr2/laravel-queue-horizon",
-		"status": "Completed"
-	},
-	{
-		"name": "Laravel Cache Telescope",
-		"image": "/images/projects/laravel.webp",
-		"description": "Estudo de cache e monitoramento com Telescope.",
-		"technologies": "PHP,Laravel,Telescope,Redis,Docker",
-		"link": "https://github.com/Marcelosmbr2/laravel-cache-telescope",
-		"status": "Completed"
-	},
-	{
-		"name": "Laravel Evolution API",
-		"image": "/images/projects/laravel.webp",
-		"description": "Enviando notificações via Whatsapp com Evolution API.",
-		"technologies": "PHP,Laravel,Evolution API,Docker",
-		"link": "https://github.com/marcelosmbr2/laravel-evolution-api",
-		"status": "Completed"
-	},
-	{
-		"name": "Spring Framework",
-		"image": "/images/projects/spring.webp",
-		"description": "Estudo dos fundamentos e funcionalidades do framework Spring.",
-		"technologies": "Java,Spring",
-		"link": "https://github.com/Marcelosmbr2/spring-basic",
-		"status": "Completed"
-	}
+  {
+    "name": "Portfolio V2",
+    "image": "/images/projects/laravel.webp",
+    "description": "Portfolio pessoal construído com Laravel 13, Inertia e React.",
+    "technologies": [
+      "Laravel",
+      "PHP",
+      "Inertia",
+      "React",
+      "Typescript"
+    ],
+    "link": "https://github.com/marcelosmbr2/personal-website-v2",
+    "status": "completed",
+    "is_favorite": true,
+    "order": 1
+  },
+  {
+    "name": "Portfolio V1",
+    "image": "/images/projects/nextjs.webp",
+    "description": "Portfolio pessoal construído com Next.js 15 e DatoCMS.",
+    "technologies": [
+      "Next.js",
+      "DatoCMS"
+    ],
+    "link": "https://github.com/Marcelosmbr2/personal-website",
+    "status": "completed",
+    "is_favorite": false,
+    "order": 2
+  },
+  {
+    "name": "Symfony Framework",
+    "image": "/images/projects/symfony.webp",
+    "description": "Estudo dos fundamentos e funcionalidades do framework Symfony.",
+    "technologies": [
+      "PHP",
+      "Symfony"
+    ],
+    "link": "https://github.com/marcelosmbr2/symfony-framework",
+    "status": "in progress",
+    "is_favorite": false,
+    "order": 3
+  },
+  {
+    "name": "Laravel MCP",
+    "image": "/images/projects/laravel.webp",
+    "description": "Estudo de servidor MCP com Laravel.",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "MCP"
+    ],
+    "link": "https://github.com/marcelosmbr2/laravel-mcp",
+    "status": "completed",
+    "is_favorite": true,
+    "order": 4
+  },
+  {
+    "name": "Infraestrutura como Código",
+    "image": "/images/projects/terraform.webp",
+    "description": "Implantação de uma aplicação Laravel na AWS utilizando Terraform e Ansible",
+    "technologies": [
+      "AWS",
+      "EC2",
+      "Terraform",
+      "Ansible",
+      "Laravel"
+    ],
+    "link": "https://github.com/marcelosmbr2/iac-terraform-ansible.git",
+    "status": "completed",
+    "is_favorite": true,
+    "order": 5
+  },
+  {
+    "name": "Laravel Queues",
+    "image": "/images/projects/laravel.webp",
+    "description": "Estudo de filas, jobs assíncronos e monitoramento com Horizon.",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Horizon",
+      "Queues",
+      "Redis",
+      "Mailhog",
+      "Docker"
+    ],
+    "link": "https://github.com/Marcelosmbr2/laravel-queue-horizon",
+    "status": "completed",
+    "is_favorite": false,
+    "order": 6
+  },
+  {
+    "name": "Laravel Cache Telescope",
+    "image": "/images/projects/laravel.webp",
+    "description": "Estudo de cache e monitoramento com Telescope.",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Telescope",
+      "Redis",
+      "Docker"
+    ],
+    "link": "https://github.com/Marcelosmbr2/laravel-cache-telescope",
+    "status": "completed",
+    "is_favorite": false,
+    "order": 7
+  },
+  {
+    "name": "Laravel Evolution API",
+    "image": "/images/projects/laravel.webp",
+    "description": "Enviando notificações via Whatsapp com Evolution API.",
+    "technologies": [
+      "PHP",
+      "Laravel",
+      "Evolution API",
+      "Docker"
+    ],
+    "link": "https://github.com/marcelosmbr2/laravel-evolution-api",
+    "status": "completed",
+    "is_favorite": false,
+    "order": 8
+  },
+  {
+    "name": "Spring Framework",
+    "image": "/images/projects/spring.webp",
+    "description": "Estudo dos fundamentos e funcionalidades do framework Spring.",
+    "technologies": [
+      "Java",
+      "Spring"
+    ],
+    "link": "https://github.com/Marcelosmbr2/spring-basic",
+    "status": "completed",
+    "is_favorite": false,
+    "order": 9
+  }
 ]

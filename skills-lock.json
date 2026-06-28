@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "skills": {
+    "datocms-cda": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-cda/SKILL.md",
+      "computedHash": "43836f0526a3e65e582b4844db4bbe90d80e9c8dde0cedd43ee9f396317e14df"
+    },
+    "datocms-cli": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-cli/SKILL.md",
+      "computedHash": "9759f7e208db1f5f1797ccfcb08bf3b2cf44ac586950baddc4fdd71a3c51c4cc"
+    },
+    "datocms-cma": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-cma/SKILL.md",
+      "computedHash": "c2071c204c2a10ec08a05f4f297c91f18831c5b7c9416a63db1e47369f090835"
+    },
+    "datocms-content-modeling": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-content-modeling/SKILL.md",
+      "computedHash": "d495de5c7d6d4095d5991f7a21358d741838a183da770afab198db3bb0a9937a"
+    },
+    "datocms-feedback": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-feedback/SKILL.md",
+      "computedHash": "4a728f37edbb9ca06f3d6b3e3f3e5125e085d2ac9cc7955c2ba0134ba11d858d"
+    },
+    "datocms-frontend-integrations": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-frontend-integrations/SKILL.md",
+      "computedHash": "5c5b2d0f581f7ac57a2e2717f93ae4ce84949c13c808b2ce292e1a488b92a7f1"
+    },
+    "datocms-plugin": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-plugin/SKILL.md",
+      "computedHash": "2a6f9d266eeefb235fe0cf6666c355a076eca866c8cdf942e90faf1562a41e3c"
+    },
+    "datocms-setup": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datocms-setup/SKILL.md",
+      "computedHash": "a1c81ad2f1a62fefc3920680c2d564f89495e2db750e8008e1902bc9a6164187"
+    },
+    "eval-triggers": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/eval-triggers/SKILL.md",
+      "computedHash": "97ff866b705015e07ffff502f0ecae48b54c871b1a581f70695a8a2a206bfcff"
+    },
+    "next-cache-components-adoption": {
+      "source": "vercel/next.js",
+      "sourceType": "github",
+      "skillPath": "skills/next-cache-components-adoption/SKILL.md",
+      "computedHash": "a080096dcaf684bbcc81516892c204c4ec370e26b84c3e18f6200c785631bad0"
+    },
+    "next-cache-components-optimizer": {
+      "source": "vercel/next.js",
+      "sourceType": "github",
+      "skillPath": "skills/next-cache-components-optimizer/SKILL.md",
+      "computedHash": "b8d757a1fe10ebe7b10de1d5ee83f9bcdbd1de1e1147efc68cf249377f471067"
+    },
+    "next-dev-loop": {
+      "source": "vercel/next.js",
+      "sourceType": "github",
+      "skillPath": "skills/next-dev-loop/SKILL.md",
+      "computedHash": "aad97b32ba6efd31e92d063ec77120a694fe0d4a9401daf9af4c205cd5e21b07"
+    },
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "0dc0edeeaec2ae491ae506806517866a3f9bd48d04e0458feb37e0252862891f"
+    },
+    "validate": {
+      "source": "datocms/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/validate/SKILL.md",
+      "computedHash": "62b2235d15e8154ce7df71cbb8279b9c589dc0977583c6cc378f948a76da34bd"
+    }
+  }
+}
